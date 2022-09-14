@@ -25,8 +25,9 @@ export default class Renderer extends WebGLRenderer {
   }
 
   onResize() {
-    const {  W, H } = window._3DLayout
+    const { W, H, PR } = window._3DLayout
     this.setSize( W, H ) 
+    this.setPixelRatio(PR)
   }
 
   toggleRender(isRender) {

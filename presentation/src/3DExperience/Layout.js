@@ -17,7 +17,6 @@ export default class Layout {
     this.W    = window.innerWidth
     this.H    = window.innerHeight
     this.PR   = Math.min(window.devicePixelRatio, 1)
-
     this.isResizing = false
 
     ev('layout:change')

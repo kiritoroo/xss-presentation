@@ -12,6 +12,8 @@ export default class Camera extends PerspectiveCamera {
 
     this.position.set( 0, 0, 10 )
     this.lookAt(new Vector3())
+
+    this.bindEvents()
   }
 
   bindEvents() {
@@ -21,6 +23,6 @@ export default class Camera extends PerspectiveCamera {
   onResize() {
     const { W, H }  = window._3DLayout
     this.aspect     = W / H
-    this.updateProjectionMatrix() 
+    this.updateProjectionMatrix()
   }
 }
