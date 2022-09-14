@@ -11,7 +11,7 @@ export default class Box extends Object3D {
     super()
 
     this.preload().then(() => {
-      this.initBox()
+      this.initObject()
       this.bindEvents()
     })
   }
@@ -20,7 +20,7 @@ export default class Box extends Object3D {
 
   }
 
-  initBox() {
+  initObject() {
     this.geom = new BoxGeometry(5, 5, 5)
     this.mat = new MeshStandardMaterial({ color: new Color(0x00ff00) })
     this.mesh = new Mesh(this.geom, this.mat)

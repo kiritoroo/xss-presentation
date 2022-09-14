@@ -6,7 +6,7 @@ import { ev } from '../utils'
 
 import Box from '../components/Box'
 import Lights from '../components/Lights'
-
+import XSSText from '../components/XSSText'
 export default class Scene extends _Scene {
   constructor() {
     super()
@@ -21,9 +21,11 @@ export default class Scene extends _Scene {
   }
 
   initScene() {
-    this.box      = new Box()
+    // this.box      = new Box()
     this.lights   = new Lights()
-    this.add( this.box, this.lights )
+    this.xssText  = new XSSText()
+
+    this.add( this.lights, this.xssText )
   }
 
   update() {

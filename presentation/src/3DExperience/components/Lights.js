@@ -9,7 +9,7 @@ export default class Lights extends Object3D {
     super()
 
     this.preload().then(() => {
-      this.initLight()
+      this.initObject()
       this.bindEvents()
     })
   }
@@ -18,7 +18,7 @@ export default class Lights extends Object3D {
 
   }
 
-  initLight() {
+  initObject() {
     this.ambientLight     = new AmbientLight( 0x404040 )
     this.directionalLight = new DirectionalLight( 0xffffff, 1 )
 

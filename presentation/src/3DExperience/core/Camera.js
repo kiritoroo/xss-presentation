@@ -20,7 +20,7 @@ export default class Camera extends PerspectiveCamera {
     document.addEventListener('layout:change', () => this.onResize())
   }
 
-  onResize() {
+  onResize() { 
     const { W, H }  = window._3DLayout
     this.aspect     = W / H
     this.updateProjectionMatrix()
