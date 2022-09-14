@@ -34,7 +34,7 @@ export default class XSSText extends Object3D {
     })
     this.mesh = new Points(this.geom, this.mat)
 
-    this.mesh.scale.set(10, 10, 10)
+    this.mesh.scale.set(1000, 1000, 1000)
     this.mesh.rotation.x = Math.PI / 2
     this.mesh.rotation.z = -Math.PI / 8
 

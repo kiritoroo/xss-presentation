@@ -1,5 +1,7 @@
 import {
-  Scene as _Scene
+  Scene as _Scene,
+  FogExp2,
+  Color
 } from 'three'
 
 import { ev } from '../utils'
@@ -10,6 +12,9 @@ import XSSText from '../components/XSSText'
 export default class Scene extends _Scene {
   constructor() {
     super()
+
+    this.fog = new FogExp2(0x000000, 0.0005)
+    this.background = new Color(0x0c0c18)
 
     this.preload().then(() => {
       this.initScene()

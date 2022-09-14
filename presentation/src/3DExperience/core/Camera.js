@@ -8,9 +8,9 @@ export default class Camera extends PerspectiveCamera {
     const { W, H }  = window._3DLayout
     const aspect    = W / H
 
-    super(75, aspect, 0.1 , 100)
+    super(75, aspect, 0.1 , 50000)
 
-    this.position.set( 0, 0, 10 )
+    this.position.set( 0, 0, 1000 )
     this.lookAt(new Vector3())
 
     this.bindEvents()
