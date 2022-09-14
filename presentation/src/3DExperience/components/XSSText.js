@@ -6,8 +6,7 @@ import {
   Color
 } from 'three'
 
-import modelLoader from '../utils/ModelLoader'
-import textureLoader from '../utils/TextureLoader'
+import loaderModel from '../utils/ModelLoader'
 
 import TemplateMaterial from '../shaders/template-material'
 
@@ -23,14 +22,14 @@ export default class XSSText extends Object3D {
 
   async preload() {
     this.store = {
-      model: await modelLoader('./src/3DExperience/static/models/xss.glb').then((m) => m.children[2])
+      model: await loaderModel('./src/3DExperience/static/models/xss.glb').then((m) => m.children[2])
     }
   }
 
   initObject() {
     this.geom = this.store.model.geometry.clone()
     this.mat = new TemplateMaterial({ 
-      u_time: { type: 'f', value: 0 }
+      uTime: { type: 'f', value: 0 }
     })
     this.mesh = new Points(this.geom, this.mat)
 

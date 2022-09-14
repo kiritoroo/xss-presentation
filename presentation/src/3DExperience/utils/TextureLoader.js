@@ -2,7 +2,7 @@ import { TextureLoader } from "three";
 
 const loader = new TextureLoader()
 
-const textureLoader = (url) => {
+const loaderTexture = (url) => {
   return new Promise((resolve) => {
     loader.load(url, (data) => {
       data.needsUpdate = true
@@ -11,4 +11,4 @@ const textureLoader = (url) => {
   })
 }
 
-export default textureLoader
+export default loaderTexture
