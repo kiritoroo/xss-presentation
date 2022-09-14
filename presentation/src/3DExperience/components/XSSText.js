@@ -7,8 +7,9 @@ import {
 } from 'three'
 
 import loaderModel from '../utils/ModelLoader'
+import loaderTexture from "../utils/TextureLoader";
 
-import TemplateMaterial from '../shaders/template-material'
+import ParticleMaterial from '../shaders/particle-material'
 
 export default class XSSText extends Object3D {
   constructor() {
@@ -22,15 +23,18 @@ export default class XSSText extends Object3D {
 
   async preload() {
     this.store = {
-      model: await loaderModel('./src/3DExperience/static/models/xss.glb').then((m) => m.children[2])
+      model: await loaderModel('./src/3DExperience/static/models/xss.glb').then((m) => m.children[2]),
+      mark: await loaderTexture('./src/3DExperience/static/image/mark.png')
     }
   }
 
   initObject() {
     this.geom = this.store.model.geometry.clone()
-    this.mat = new TemplateMaterial({ 
-      uTime: { type: 'f', value: 0 }
+    this.mat = new ParticleMaterial({ 
+      uTime: { type: 'f', value: 0 },
+      uMark: { type: "t", value: this.store.mark }
     })
+
     this.mesh = new Points(this.geom, this.mat)
 
     this.mesh.scale.set(1000, 1000, 1000)
