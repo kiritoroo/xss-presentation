@@ -39,7 +39,7 @@ export default class ParticleSystem {
 
     this.scene.add( this.currentParticle.points )
 
-    setInterval(() => {
+    setTimeout(() => {
       this.onNextStage()
     }, 2000)
   }
@@ -51,13 +51,19 @@ export default class ParticleSystem {
         scale: 1,
         x: 0,
         y: 0,
-        z: 0
+        z: 0,
+        rotation: {
+          x: 0
+        }
       },
       {
         scale: 1000,
         x: 100,
-        y: -100,
-        z: 0
+        y: 150,
+        z: 0,
+        rotation: {
+          x: -Math.PI / 8
+        }
       }
     ]
 
@@ -102,9 +108,9 @@ export default class ParticleSystem {
         x: () => vertice.x,
         y: () => vertice.y,
         z: () => vertice.z,
-        delay: (100 * Math.random()) / nextPointIndex ,
+        delay: (5 * Math.random()),
         duration: 2,
-        ease: 'circ',
+        ease: 'power3',
         onUpdate: () => {
           currPoints.array[nextPointIndex] = objPoint.x
           currPoints.array[nextPointIndex + 1] = objPoint.y
@@ -112,15 +118,15 @@ export default class ParticleSystem {
           currPoints.needsUpdate = true
 
           fakePoints.array[nextPointIndex] = objPoint.x
-          // fakePoints.array[nextPointIndex + 1] = objPoint.y
+          fakePoints.array[nextPointIndex + 1] = objPoint.y
           // fakePoints.array[nextPointIndex + 2] = objPoint.z
           fakePoints.needsUpdate = true
-          this.particleFake.points.material.opacity -= 0.0000008
+          this.particleFake.points.material.opacity -= 0.000008
 
           // this.currentParticle.points.rotation.z += 0.000005
         },
         onComplete: () => {
-          
+
         }
       })
     }
@@ -151,10 +157,15 @@ export default class ParticleSystem {
 
     //----- fix 
     this.currentParticle.points.rotation.x = Math.PI / 2
-    this.currentParticle.points.rotation.z = - Math.PI / 8
+    gsap.to(this.currentParticle.points.rotation, {
+      z: fixPosition[this.currentIndex].rotation.x,
+      duration: 8,
+      ease: 'easeIn'
+    }).play()
+
     //----- fix 
 
-    // this.currentParticle.update = () => this.allParticles[this.currentIndex].update()
+    this.currentParticle.update = () => this.allParticles[this.currentIndex].update()
   }
 
   update() {
