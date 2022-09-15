@@ -56,11 +56,8 @@ export default class Experience {
     this.camera.resize()
     this.world.resize()
 
-    if (this.PARAMS.usePost) {
-      this.postProces.resize()
-    } else {
-      this.renderer.resize()
-    }
+    this.postProces.resize()
+    this.renderer.resize()
   }
 
   update() {

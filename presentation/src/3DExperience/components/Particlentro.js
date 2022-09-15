@@ -59,7 +59,7 @@ export default class ParticleIntro extends Object3D {
 
     this.mesh = new Points(this.geom, this.mat)
 
-    this.add( this.mesh )
+    this.scene.add( this.mesh )
   }
 
   bindEvents() {

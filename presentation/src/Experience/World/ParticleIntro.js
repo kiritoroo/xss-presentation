@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import Experience from '../Experience'
 
-export default class ParticleBackground {
+export default class ParticleIntro {
   constructor() {
     this.experience   = new Experience()
     this.scene        = this.experience.scene
@@ -18,9 +18,9 @@ export default class ParticleBackground {
   }
 
   createPoints() {
-    const number    = 1000,
-          max       = 1500
-    const vertices  = []
+    const number   = 5000,
+          max      = 1500
+    const vertices = []
 
     this.geometry = new THREE.BufferGeometry()
 
@@ -36,7 +36,7 @@ export default class ParticleBackground {
 
     this.material = new THREE.PointsMaterial({
       color: 0xffffff,
-      size: 5,
+      size: 10,
       map: this.mark,
       blending: THREE.AdditiveBlending,
       depthWrite: false,
@@ -44,24 +44,12 @@ export default class ParticleBackground {
       vertexColors: false
     })
 
-    this.xPoints = new THREE.Points(this.geometry, this.material)
-    this.xPoints.position.z = -.5 * max
-    this.xPoints.position.x = -.3 * max
+    this.points = new THREE.Points( this.geometry, this.material )
 
-    this.yPoints = new THREE.Points(this.geometry, this.material)
-    this.yPoints.position.z = -.6 * max
-    this.yPoints.position.x = -.2 * max
-    this.yPoints.position.y = 0
-
-    this.zPoints = new THREE.Points(this.geometry, this.material)
-    this.zPoints.position.z = -.7 * max
-
-    this.points = [this.xPoints, this.yPoints, this.zPoints]
+    // this.scene.add( this.points )
   }
 
   update() {
-    this.xPoints.rotation.x -= this.PARAMS.flyNormal / 2.5
-    this.yPoints.rotation.y += this.PARAMS.flyNormal / 1.5
-    this.zPoints.rotation.z += this.PARAMS.flyNormal / 3.5
+    this.points.rotation.y += this.PARAMS.flyNormal * 2
   }
 }

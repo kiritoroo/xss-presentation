@@ -3,25 +3,20 @@ import Experience from '../Experience'
 
 import { EventEmitter } from 'events'
 
-import XSSText from './XSSText'
-import ParticleBackground from './ParticleBackground'
+import ParticleSystem from './ParticleSystem'
 
 export default class World extends EventEmitter {
   constructor() {
     super()
     
     this.experience = new Experience()
-
-    this.sizes    = this.experience.sizes
-    this.scene    = this.experience.scene
-    this.camera   = this.experience.camera
-    
-    this.resources = this.experience.resources
+    this.sizes      = this.experience.sizes
+    this.scene      = this.experience.scene
+    this.camera     = this.experience.camera
+    this.resources  = this.experience.resources
 
     this.resources.on("ready", () => {
-
-      this.xssText      = new XSSText()
-      this.particleBG   = new ParticleBackground()
+      this.particleSystem = new ParticleSystem()
 
       this.emit("worldready")
     })
@@ -32,11 +27,8 @@ export default class World extends EventEmitter {
   }
 
   update() {
-    if (this.xssText) {
-      this.xssText.update()
-    }
-    if (this.particleBG) {
-      this.particleBG.update()
+    if (this.particleSystem) {
+      this.particleSystem.update()
     }
   }
 }

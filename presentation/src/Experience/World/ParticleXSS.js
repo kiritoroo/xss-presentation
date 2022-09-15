@@ -4,17 +4,15 @@ import Experience from '../Experience'
 import vertex from '../Shaders/particle/vertex.vs.glsl'
 import fragment from '../Shaders/particle/fragment.fs.glsl'
 
-export default class XSSText {
+export default class ParticleXSS {
   constructor() {
     this.experience   = new Experience()
-
     this.scene        = this.experience.scene
     this.resources    = this.experience.resources
     this.time         = this.experience.time
-
     this.model        = this.resources.item['xss'].children[2]
     this.mark         = this.resources.item['mark']
-
+    this.PARAMS       = this.experience.PARAMS
     this.init()
   }
 
@@ -41,10 +39,11 @@ export default class XSSText {
     this.points.rotation.x = Math.PI / 2
     this.points.rotation.z = - Math.PI / 8
 
-    this.scene.add(this.points)
+    // this.scene.add(this.points)
   }
 
   update() {
+    // this.points.rotation.y += this.PARAMS.flyNormal * 2
     this.material.uniformsNeedUpdate = true
   }
 }
