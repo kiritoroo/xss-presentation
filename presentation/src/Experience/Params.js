@@ -1,7 +1,13 @@
 const PARAMS = {
-  usePost: true,
-  flyNormal: 0.001,
-  flyFast: 0.05
+  usePost   : true,
+  flyNormal : 0.001,
+  flyFast   : 0.05,
+
+  bloom: {
+    strength  : 2,
+    radius    : 0.15,
+    threshold : 0.7
+  }
 }
 
 export default PARAMS
