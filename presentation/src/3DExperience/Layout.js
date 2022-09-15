@@ -11,6 +11,7 @@ export default class Layout {
 
   bindEvents() {
     window.addEventListener('resize', () => this.onResize())
+    window.addEventListener('keydown', (e) => this.onKeyDown(e), false)
   }
 
   onResize() {
@@ -20,5 +21,17 @@ export default class Layout {
     this.isResizing = false
 
     ev('layout:change')
+  }
+
+  onKeyDown(e) {
+    if (e.keyCode == 38) {
+
+      ev('scene:prevStage')
+
+    } else if (e.keyCode == 40) {
+      
+      ev('scene:nextStage')
+
+    } 
   }
 }

@@ -13,7 +13,8 @@ import {
 import loaderTexture from '../utils/TextureLoader'
 
 import PARAMS from '../Param'
-export default class ParticleBackground extends Object3D {
+
+export default class ParticleIntro extends Object3D {
   constructor() {
     super()
 
@@ -30,9 +31,9 @@ export default class ParticleBackground extends Object3D {
   }
 
   initObject() {
-    const number    = 1000,
-          max       = 1500
-    const vertices  = []
+    const number   = 5000,
+          max      = 1500
+    const vertices = []
 
     this.geom = new BufferGeometry()
 
@@ -45,10 +46,10 @@ export default class ParticleBackground extends Object3D {
     }
 
     this.geom.setAttribute('position', new Float32BufferAttribute( vertices, 3 ))
-    
+
     this.mat = new PointsMaterial({
       color: 0xffffff,
-      size: 5,
+      size: 10,
       map: this.store.texture,
       blending: AdditiveBlending,
       depthWrite: false,
@@ -56,17 +57,9 @@ export default class ParticleBackground extends Object3D {
       vertexColors: false
     })
 
-    this.xBg = new Points(this.geom, this.mat)
-    this.xBg.position.z = -.5 * max
-    this.xBg.position.x = -.3 * max
-    this.yBg = new Points(this.geom, this.mat)
-    this.yBg.position.z = -.6 * max
-    this.yBg.position.x = -.2 * max
-    this.yBg.position.y = 0
-    this.zBg = new Points(this.geom, this.mat)
-    this.zBg.position.z = -.7 * max
+    this.mesh = new Points(this.geom, this.mat)
 
-    this.add(this.xBg, this.yBg, this.zBg)
+    this.add( this.mesh )
   }
 
   bindEvents() {
@@ -74,8 +67,6 @@ export default class ParticleBackground extends Object3D {
   }
 
   onUpdate() {
-    this.xBg.rotation.x -= PARAMS.flyNormal / 2.5
-    this.yBg.rotation.y += PARAMS.flyNormal / 1.5
-    this.zBg.rotation.z += PARAMS.flyNormal / 3.5
+    this.rotation.y += 0.005
   }
 }

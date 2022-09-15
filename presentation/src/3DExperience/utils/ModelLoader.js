@@ -6,7 +6,6 @@ const loaderModel = (url) => {
   return new Promise((resolve, reject) => {
     loader.load(url, (gltf) => {
       const result = gltf.scene
-      console.log(result)
       resolve(result)
     })
   })

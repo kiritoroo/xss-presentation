@@ -3,6 +3,8 @@ import {
   Vector3
 } from 'three'
 
+import gsap from 'gsap'
+
 export default class Camera extends PerspectiveCamera {
   constructor() {
     const { W, H }  = window._3DLayout
@@ -14,6 +16,8 @@ export default class Camera extends PerspectiveCamera {
     this.lookAt(new Vector3())
 
     this.bindEvents()
+
+    // this.onPrepare(0, 3000)
   }
 
   bindEvents() {
@@ -24,5 +28,31 @@ export default class Camera extends PerspectiveCamera {
     const { W, H }  = window._3DLayout
     this.aspect     = W / H
     this.updateProjectionMatrix()
+  }
+
+  onPrepare(index, timeout) {
+    // var cameraObj = [{
+    //   rotation: {
+    //       x: -1.26,
+    //       y: 0.16,
+    //       z: 0.46
+    //   },
+    //   position: {
+    //       x: 220,
+    //       y: 1314,
+    //       z: 414
+    //   }
+    // }]
+    // setTimeout(() => {
+    //   this.position = cameraObj[index].position
+    //   gsap.to(this, {
+    //     rotation: this.rotation,
+    //     ease: 'none',
+    //     duration: 0.5,
+    //     onComplete: () => {
+
+    //     }
+    //   })
+    // }, timeout)
   }
 }
