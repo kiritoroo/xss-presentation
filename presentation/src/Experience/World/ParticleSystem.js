@@ -4,6 +4,7 @@ import Experience from '../Experience'
 import ParticleBackground from './ParticleBackground'
 import ParticleIntro from './ParticleIntro'
 import ParticleXSS from './ParticleXSS'
+import ParticleFake from './ParticleFake'
 
 import gsap from 'gsap'
 
@@ -15,12 +16,13 @@ export default class ParticleSystem {
     this.PARAMS       = this.experience.PARAMS
 
     this.particleIntro  = new ParticleIntro()
+    this.particleFake   = new ParticleFake()
     this.particleXSS    = new ParticleXSS()
     this.particleBG     = new ParticleBackground()
 
     this.allParticles     = []
     this.currentParticle  = { points: null, update: null }
-    this.currentIndex     = 1
+    this.currentIndex     = 0
 
     this.init()
   }
@@ -33,10 +35,13 @@ export default class ParticleSystem {
     }
 
     this.scene.add( ...this.particleBG.points )
+    this.scene.add( this.particleFake.points )
+
     this.scene.add( this.currentParticle.points )
 
-    // this.onNextStage()
-
+    setInterval(() => {
+      this.onNextStage()
+    }, 2000)
   }
 
   onNextStage() {
@@ -44,14 +49,14 @@ export default class ParticleSystem {
     const fixPosition = [
       {
         scale: 1,
-        x: 100,
+        x: 0,
         y: 0,
         z: 0
       },
       {
         scale: 1000,
         x: 100,
-        y: 0,
+        y: -100,
         z: 0
       }
     ]
@@ -59,6 +64,7 @@ export default class ParticleSystem {
     this.currentIndex = 1
     const nextPoins = this.allParticles[this.currentIndex].points.geometry.getAttribute('position')
     const currPoints = this.currentParticle.points.geometry.getAttribute('position')
+    const fakePoints = this.particleFake.points.geometry.getAttribute('position')
 
     //----- danger
     // this.currentParticle.points.geometry.attributes.position.array.forEach((point, point_index) => {
@@ -82,9 +88,9 @@ export default class ParticleSystem {
     for (let i = 0; i < nextPoins.array.length; i+=3) {
       let vertice = new THREE.Vector3()
       let nextPointIndex = i % currPoints.array.length
-      vertice.setX(nextPoins.array[nextPointIndex] * fixPosition[this.currentIndex].scale)
-      vertice.setY(nextPoins.array[nextPointIndex + 1] * fixPosition[this.currentIndex].scale)
-      vertice.setZ(nextPoins.array[nextPointIndex + 2] * fixPosition[this.currentIndex].scale) 
+      vertice.setX(nextPoins.array[nextPointIndex] * fixPosition[this.currentIndex].scale + fixPosition[this.currentIndex].x)
+      vertice.setY(nextPoins.array[nextPointIndex + 1] * fixPosition[this.currentIndex].scale + fixPosition[this.currentIndex].y)
+      vertice.setZ(nextPoins.array[nextPointIndex + 2] * fixPosition[this.currentIndex].scale + fixPosition[this.currentIndex].z) 
       vertices.push(vertice)
 
       let objPoint = {
@@ -96,13 +102,20 @@ export default class ParticleSystem {
         x: () => vertice.x,
         y: () => vertice.y,
         z: () => vertice.z,
-        delay: (10 * Math.random()) ,
-        ease: 'easeIn',
+        delay: (100 * Math.random()) / nextPointIndex ,
+        duration: 2,
+        ease: 'circ',
         onUpdate: () => {
           currPoints.array[nextPointIndex] = objPoint.x
           currPoints.array[nextPointIndex + 1] = objPoint.y
           currPoints.array[nextPointIndex + 2] = objPoint.z
           currPoints.needsUpdate = true
+
+          fakePoints.array[nextPointIndex] = objPoint.x
+          // fakePoints.array[nextPointIndex + 1] = objPoint.y
+          // fakePoints.array[nextPointIndex + 2] = objPoint.z
+          fakePoints.needsUpdate = true
+          this.particleFake.points.material.opacity -= 0.0000008
 
           // this.currentParticle.points.rotation.z += 0.000005
         },
@@ -141,17 +154,21 @@ export default class ParticleSystem {
     this.currentParticle.points.rotation.z = - Math.PI / 8
     //----- fix 
 
-    this.currentParticle.update = () => this.allParticles[this.currentIndex].update()
+    // this.currentParticle.update = () => this.allParticles[this.currentIndex].update()
   }
 
   update() {
     this.particleBG.update()
-    this.currentParticle.update()
+    // this.currentParticle.update()
 
     // if (this.currentIndex == 0){
     //   this.particleIntro.update()
     // } else if (this.currentIndex == 1) {
     //   this.particleXSS.update()
     // }
+
+    if (this.particleFake) {
+      this.particleFake.update()
+    }
   }
 }

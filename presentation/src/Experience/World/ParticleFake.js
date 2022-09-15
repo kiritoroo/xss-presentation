@@ -3,7 +3,7 @@ import Experience from '../Experience'
 
 import vertex from '../Shaders/particle/vertex.vs.glsl'
 import fragment from '../Shaders/particle/fragment.fs.glsl'
-export default class ParticleIntro {
+export default class ParticleFake {
   constructor() {
     this.experience   = new Experience()
     this.scene        = this.experience.scene
@@ -36,27 +36,27 @@ export default class ParticleIntro {
 
     this.geometry.setAttribute('position', new THREE.Float32BufferAttribute( vertices, 3 ))
 
-    // this.material = new THREE.PointsMaterial({
-    //   color: 0xffffff,
-    //   size: 5,
-    //   map: this.mark,
-    //   blending: THREE.AdditiveBlending,
-    //   depthWrite: false,
-    //   transparent: true,
-    //   vertexColors: false
-    // })
-
-    this.material = new THREE.RawShaderMaterial({
-      vertexShader: vertex,
-      fragmentShader: fragment,
-      uniforms: {
-        uTime: { type: 'f', value: 0 },
-        uMark: { type: 't', value: this.mark }
-      },
+    this.material = new THREE.PointsMaterial({
+      color: 0xffffff,
+      size: 5,
+      map: this.mark,
       blending: THREE.AdditiveBlending,
       depthWrite: false,
-      transparent: true
+      transparent: true,
+      vertexColors: false
     })
+
+    // this.material = new THREE.RawShaderMaterial({
+    //   vertexShader: vertex,
+    //   fragmentShader: fragment,
+    //   uniforms: {
+    //     uTime: { type: 'f', value: 0 },
+    //     uMark: { type: 't', value: this.mark }
+    //   },
+    //   blending: THREE.AdditiveBlending,
+    //   depthWrite: false,
+    //   transparent: true
+    // })
 
     this.points = new THREE.Points( this.geometry, this.material )
 
