@@ -10,7 +10,7 @@ import {
   Color
 } from 'three'
 
-import loaderTexture from '../utils/TextureLoader'
+import loaderTexture from '../../Experience/Utils/TextureLoader'
 
 import PARAMS from '../Param'
 

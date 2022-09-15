@@ -7,7 +7,7 @@ import {
 } from 'three'
 
 import loaderModel from '../utils/ModelLoader'
-import loaderTexture from "../utils/TextureLoader";
+import loaderTexture from "../../Experience/Utils/TextureLoader";
 
 import ParticleMaterial from '../shaders/particle-material'
 
