@@ -16,4 +16,4 @@ import Experience from "./Experience/Experience";
 
 //----- Singleton
 
-const stage = new Experience(document.getElementById("stage"))
+// const stage = new Experience(document.getElementById("stage"))
