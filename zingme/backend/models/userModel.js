@@ -2,7 +2,7 @@ const mongoose    = require('mongoose')
 const Schema      = mongoose.Schema
 
 const userSchema  = new Schema({
-  fullName: {
+  fullname: {
     type: String,
     require: [true, 'Vui lòng nhập tên của bạn!']
   },

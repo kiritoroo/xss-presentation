@@ -10,6 +10,6 @@ const {
 
 router.post('/signup', singupUser)
 router.post('/login', loginUser)
-router.post('/logime', getUser)
+router.get('/me', protect, getUser)
 
 module.exports = router

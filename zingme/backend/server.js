@@ -3,6 +3,8 @@ const dotenv            = require('dotenv')
 const session           = require('express-session')
 const MongoDBSession    = require('connect-mongodb-session')(session)
 const mongoose          = require('mongoose')
+const cors              = require('cors')
+const cookieParser      = require('cookie-parser')
 const app               = express()
 
 dotenv.config()
@@ -27,7 +29,10 @@ const store = new MongoDBSession({
   collection  : 'sessions',
 })
 
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: false }))
+app.use(express.json())
+app.use(cors())
+app.use(cookieParser())
 app.use(session({
   secret            : 'zingme',
   resave            : false,
