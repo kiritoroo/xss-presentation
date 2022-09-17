@@ -1,11 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { request } from '../utils/axios-utils'
 import { useMutation } from 'react-query'
+import { useNavigate } from 'react-router-dom'
 
 import './Signup.css'
-import axios from 'axios'
+// import axios from 'axios'
 
 export default function Signup() {
+  const navigate = useNavigate()
+
   const [formData, setFormData] = useState({
     fullname      : '',
     email         : '',
@@ -16,27 +19,27 @@ export default function Signup() {
   const { fullname, email, password, repassword } = formData
 
   const addUser = (user) => {
-    // return request({
-    //   url     : '/signup',
-    //   method  : 'post',
-    //   data    : user
-    // })
-    //   .then(response => {
-    //     console.log(response); return response;
-    //   })
-    //   .catch(error => {
-    //     console.log(error); return error;
-    //   })
-
-    return axios.post('http://localhost:5000/api/signup', user)
-    .then(function (response) {
-      console.log(response);
-      return response
+    return request({
+      url     : '/signup',
+      method  : 'post',
+      data    : user
     })
-    .catch(function (error) {
-      console.log(error);
-      return error
-    });
+      .then(response => {
+        console.log(response); return response;
+      })
+      .catch(error => {
+        console.log(error); return error;
+      })
+
+  //   return axios.post('http://localhost:5000/api/signup', user)
+  //   .then(function (response) {
+  //     console.log(response);
+  //     return response
+  //   })
+  //   .catch(function (error) {
+  //     console.log(error);
+  //     return error
+  //   });
   }
 
   const {
@@ -66,11 +69,28 @@ export default function Signup() {
 
     mutate(user, {
       onError: () => console.log('error'),
-      onSuccess: () => console.log('success')
+      onSuccess: () => {
+        console.log('success')
+        navigate('/')
+      }
     })
 
-    console.log({ er: isError, suss: isSuccess, load: isLoading })
+    // console.log({ er: isError, suss: isSuccess, load: isLoading })
 
+    // request({
+    //   url     : '/signup',
+    //   method  : 'post',
+    //   data    : user
+    // })
+    // .then(res => {
+    //   if (res.response.status == "400") {
+    //     console.log(err);
+    //   } else {
+    //     navigate('/')
+    //   }
+    // })
+    // .catch(err => {
+    // })
   }
 
   return (
@@ -79,9 +99,9 @@ export default function Signup() {
         <h1>Register</h1>
         <p>Tạo tài khoản mới</p>
       </section>
-{/* -------------------------------------------------- */}
       <section className='form'>
         <form onSubmit={onSubmit}>
+{/* -------------------------------------------------- */}
           <div className='form-group'>
             <input 
               type="text"
@@ -128,7 +148,7 @@ export default function Signup() {
               onChange={onChange}
             />
           </div>
-
+{/* -------------------------------------------------- */}
           <div className='form-group'>
             <button type='submit'>
               Đăng ký
