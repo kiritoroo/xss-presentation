@@ -79,7 +79,7 @@ const userLogin = asyncHandler(async (req, res) => {
     console.log(req.session);
 
     return res
-      .status(201)
+      .status(200)
       // .cookie('sid', req.sessionID)
       .json({
         status  : "success",
@@ -95,22 +95,57 @@ const userLogin = asyncHandler(async (req, res) => {
   }
 })
 
-// @route   POST /api/me
-const getUser = asyncHandler(async (req, res) => {
-  const { user } = req.session
+// @route   POST /api/logout
+const userLogout = asyncHandler(async (req, res) => {
+  req.session.destroy(err => {
+    if (err) {
+      return res
+        .status(400)
+        .json({
+          status  : "error",
+          message : "Không thể đăng xuất"
+        })
+    } else {
+      return res
+        .status(200)
+        .json({
+          status  : "success",
+          message : "Đăng xuất thành công"
+        })
+    }
+  })
+})
 
-  console.log(user)
+// @route   GET /api/me
+const getUser = asyncHandler(async (req, res) => {
+  const { user: uss } = req.session
+
+  const user = await User.findOne({"_id": uss.id})
+
+  // console.log(user);
+
+  const data = {
+    fullname      : user.fullname,
+    email         : user.email,
+    city          : user.city,
+    aboutMe       : user.aboutMe,
+    profileImage  : user.profileImage,
+    coverPhoto    : user.coverPhoto
+  }
+  // console.log(data);
 
   return res
-    .status(201)
+    .status(200)
     .json({
       status    : "success",
-      message   : "Đã xác thực!"
+      message   : "Đã xác thực!",
+      data      : data 
     })
 })
 
 module.exports = {
   userSignup,
   userLogin,
+  userLogout,
   getUser
 }

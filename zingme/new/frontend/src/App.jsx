@@ -13,13 +13,11 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <Router>
-        <div>Header</div>
         <Routes>
           <Route path='/login' element={<Login/>}></Route>
           <Route path='/signup' element={<Signup/>}></Route>
           <Route path='/me' element={<Me/>}></Route>
         </Routes>
-        <div>Footer</div>
       </Router>
     {/* <ReactQueryDevtools initialIsOpen={false} position='bottom-right'/> */}
     </QueryClientProvider>

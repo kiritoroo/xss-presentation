@@ -26,7 +26,7 @@ export default function Signup() {
     e.preventDefault()
 
     const user = { fullname, email, password }
-    const req = await axios
+    const res = await axios
       .post('http://localhost:5000/api/signup', user)
       .then(res => {
         return res.data
@@ -35,11 +35,11 @@ export default function Signup() {
         return err.response.data
       })
 
-    setMess(req.message)
-    if (req.status == 'success') {
+    setMess(res.message)
+    if (res.status == 'success') {
       navigate('/login')
     }
-    else if (req.status == 'error') {
+    else if (res.status == 'error') {
       setFormData(initForm)
     }
   }

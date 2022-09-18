@@ -38,7 +38,7 @@ export default function Login() {
     //   return err.response.data
     // })
 
-    const req = await axios({
+    const res = await axios({
       url: '/login',
       baseURL: 'http://localhost:5000/api',
       method: 'POST',
@@ -81,13 +81,13 @@ export default function Login() {
     //   return err.response.data
     // })
 
-    setMess(req.message)
-    if (req.status == 'success') {
+    setMess(res.message)
+    if (res.status == 'success') {
       setTimeout(() => {
         navigate('/me')
       }, 500);
     }
-    else if (req.status == 'error') {
+    else if (res.status == 'error') {
       setFormData(initForm)
     }
   }
