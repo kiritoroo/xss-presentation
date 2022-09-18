@@ -5,6 +5,7 @@ import { ReactQueryDevtools } from 'react-query/devtools'
 
 import Login from './pages/Login'
 import Signup from './pages/Signup'
+import Me from './pages/Me'
 
 const queryClient = new QueryClient()
 
@@ -14,8 +15,9 @@ function App() {
       <Router>
         <div>Header</div>
         <Routes>
-          <Route path='/' element={<Login/>}></Route>
+          <Route path='/login' element={<Login/>}></Route>
           <Route path='/signup' element={<Signup/>}></Route>
+          <Route path='/me' element={<Me/>}></Route>
         </Routes>
         <div>Footer</div>
       </Router>

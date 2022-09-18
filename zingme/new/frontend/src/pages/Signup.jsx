@@ -2,12 +2,10 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
-import { request } from '../utils/axios-utils'
-
 export default function Signup() {
   const navigate = useNavigate()
 
-  const [mess, setMess] = useState('')
+  const [ mess, setMess ] = useState('')
 
   const initForm = {
     fullname  : "",

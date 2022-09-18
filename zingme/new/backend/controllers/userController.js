@@ -52,6 +52,8 @@ const userLogin = asyncHandler(async (req, res) => {
 
   const user = await User.findOne({ email })
 
+  // console.log(req.sessionID)
+  
   if (!user) {
     return res
       .status(400)
@@ -63,12 +65,22 @@ const userLogin = asyncHandler(async (req, res) => {
 
   if (user && (await bcrypt.compare(password, user.password))) {
     req.session.isAuth = true
-    // req.session.cookie.httpOnly = false
+    req.session.cookie.httpOnly = false
+
+    const sessionUser = {
+      id: user._id,
+      email: user.email
+    }
+
+    req.session.user = sessionUser
+
 
     console.log(`Phiên mới đã được tạo: ${req.session.id}`)
+    console.log(req.session);
 
     return res
       .status(201)
+      // .cookie('sid', req.sessionID)
       .json({
         status  : "success",
         message : "Đăng nhập thành công"
@@ -77,7 +89,7 @@ const userLogin = asyncHandler(async (req, res) => {
     return res
       .status(400)
       .json({
-        status  : "success",
+        status  : "error",
         message : "Tài khoản không hợp lệ!"
       })
   }
@@ -85,7 +97,16 @@ const userLogin = asyncHandler(async (req, res) => {
 
 // @route   POST /api/me
 const getUser = asyncHandler(async (req, res) => {
+  const { user } = req.session
 
+  console.log(user)
+
+  return res
+    .status(201)
+    .json({
+      status    : "success",
+      message   : "Đã xác thực!"
+    })
 })
 
 module.exports = {

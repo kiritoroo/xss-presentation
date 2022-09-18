@@ -4,7 +4,7 @@ const protect = asyncHandler(async (req, res, next) => {
   if (req.session.isAuth) {
     next()
   } else {
-    rs
+    return res
       .status(401)
       .json({
         status: "error",
