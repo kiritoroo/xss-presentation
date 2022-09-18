@@ -1,6 +1,8 @@
 const bcrypt          = require('bcryptjs')
 const asyncHandler    = require('express-async-handler')
 const User            = require('../models/userModel')
+const fs              = require('fs')
+const base_url          = "http://localhost:5000"
 
 // @route   POST /api/singup
 const userSignup = asyncHandler(async (req, res) => {
@@ -122,17 +124,14 @@ const getUser = asyncHandler(async (req, res) => {
 
   const user = await User.findOne({"_id": uss.id})
 
-  // console.log(user);
-
   const data = {
     fullname      : user.fullname,
     email         : user.email,
     city          : user.city,
     aboutMe       : user.aboutMe,
     profileImage  : user.profileImage,
-    coverPhoto    : user.coverPhoto
+    coverPhoto    : base_url + "/" + user.coverPhoto
   }
-  // console.log(data);
 
   return res
     .status(200)
@@ -143,9 +142,47 @@ const getUser = asyncHandler(async (req, res) => {
     })
 })
 
+// @route   POST /api/me/upCover
+const uploadCover = asyncHandler(async (req, res) => {
+  const { user: uss } = req.session
+
+  const user = await User.findOne({ "_id": uss.id })
+
+  const { imgData, imgName } = req.body
+
+
+  const img_url = 'public/images/' + user.email + "_imngCover_" + imgName
+  const base64Image = imgData.split(';base64,').pop()
+
+  const old_path = user.coverPhoto
+
+  fs.unlink(old_path, (err) => {
+    if (err) throw err
+  })
+
+  fs.writeFile(img_url, base64Image, {encoding: 'base64'}, (err) => {
+    user.updateOne({
+      $set: {
+        coverPhoto: img_url
+      },
+    }, (error, data) => {
+      return res
+        .status(201)
+        .json({
+          status  : "success",
+          message : "Cập nhật ảnh bìa thành công",
+          data    : base_url + "/" + img_url
+        })
+    })
+  })
+})
+
+// @route   POST /api/me/upAvatar
+
 module.exports = {
   userSignup,
   userLogin,
   userLogout,
+  uploadCover,
   getUser
 }

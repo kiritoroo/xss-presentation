@@ -5,6 +5,7 @@ const MongoDBSession    = require('connect-mongodb-session')(session)
 const mongoose          = require('mongoose')
 const cors              = require('cors')
 const cookieParser      = require('cookie-parser')
+const bodyParser        = require('body-parser')
 const app               = express()
 
 dotenv.config()
@@ -14,6 +15,7 @@ const mongo_url         = process.env.MONGO_URI
 const sess_name         = process.env.SESS_NAME
 const sess_secret       = process.env.SESS_SECRET
 const sess_lifetime     = 1000 * 60 * 60 * 1
+const base_url          = "http://localhost:5000"
 
 mongoose
   .connect(mongo_url, {
@@ -34,6 +36,9 @@ const store = new MongoDBSession({
 })
 
 app.set("trust proxy", 1)
+app.use("/public", express.static(__dirname + "/public"))
+app.use(bodyParser.json({limit: "50mb"}));
+app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cors({
