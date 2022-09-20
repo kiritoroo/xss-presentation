@@ -2,14 +2,16 @@
 
 .profile-cover {
   background-color: lightblue;
-  height: 300px;
+  height: 400px;
   display: block;
 }
 
 .profile-cover img {
   width: 100%;
   height: 100%;
-  object-fit: cover
+  object-fit: cover;
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
 }
 
 .profile-cover .upload {
@@ -64,17 +66,17 @@
 
 /* Avatar ---------- */
 .profile-avatar {
-  position: absolute;
-  max-width: 205px;
+  position: relative;
+  max-width: 200px;
   margin: 50px auto;
-  top: 250px;
-  left: 100px;
+  top: -150px;
+  right: 25vw;
   z-index: 999;
 }
 
 .profile-avatar .upload {
   position: absolute;
-  right: 12px;
+  right: 15px;
   z-index: 1;
   top: 10px;
 }
@@ -105,7 +107,7 @@
   font-family: 'FontAwesome';
   color: #757575;
   position: absolute;
-  top: 10px;
+  top:5px;
   left: 0;
   right: 0;
   text-align: center;
@@ -113,11 +115,11 @@
 }
 
 .profile-avatar .preview {
-  width: 192px;
-  height: 192px;
+  width: 195px;
+  height: 195px;
   position: relative;
   border-radius: 100%;
-  border: 6px solid #F8F8F8;
+  border: 5px solid #F8F8F8;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
 }
 .profile-avatar .preview > img {
@@ -131,11 +133,11 @@
 
 /* Info ---------- */
 .profile-name {
-  position: absolute;
-  top: 420px;
+  position: relative;
+  top: -70px;
   z-index: 99;
   color: #088DCD;
-  left: 315px;
+  left: 220px;
   font-weight: bold;
   font-size: 20px;
 }
@@ -158,7 +160,7 @@
 }
 
 .profile-wrap {
-  margin-bottom: 0px;
+  margin-bottom: -230px;
 }
 
 

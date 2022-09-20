@@ -45,7 +45,7 @@ const userSignup = asyncHandler(async (req, res) => {
     .json({
       status  : "success",
       message : "Đăng ký tài khoản thành công!"
-  })
+    })
 })
 
 // @route   POST /api/login

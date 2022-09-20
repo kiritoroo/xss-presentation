@@ -9,7 +9,7 @@ const {
   postComment
 } = require('../controllers/postController')
 
-router.post('/getNewFeeds', protect, postGetAll)
+router.get('/getNewFeeds', protect, postGetAll)
 router.post('/postAdd', protect, postAdd)
 router.post('/postToggleLike', protect, postToggleLike)
 router.post('/postComment', protect, postComment)

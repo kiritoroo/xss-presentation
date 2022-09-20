@@ -76,32 +76,6 @@ export default function Me() {
     }
   })
 
-  const logout = async (e) => {
-    e.preventDefault()
-
-    const res = await axios({
-      url: '/logout',
-      baseURL: 'http://localhost:5000/api',
-      method: 'POST',
-      headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json"
-      }
-    })
-    .then(res => {
-      return res.data
-    })
-    .catch(err => {
-      return err.response.data
-    })
-
-    if (res.status === 'error') {
-      navigate('/me')
-    } else if (res.status == 'success') {
-      navigate('/login')
-    }
-  }
-
   const coverImgRef = useRef()
   const uploadCover = async (e) => {
     e.preventDefault()
@@ -247,13 +221,13 @@ export default function Me() {
         </div>
         <div className="preview">
           <img src={ userData.profileImage=='' ? './public/default-avatar.png' : userData.profileImage }/>
+          <div className='profile-name'>
+            <div>{userData.fullname}</div>
+          </div>
         </div>
       </div>
 
 
-      <div className='profile-name'>
-          <div>{userData.fullname}</div>
-        </div>
 
       {/* <dir className='profile-about'>
         <div className='info-item'>
@@ -274,9 +248,7 @@ export default function Me() {
           <div className="row">
             <div className="col-md-12">
               <div className="row" id="page-contents">
-
               <div className="col-md-3"></div>
-
                 <div className="col-md-6">
                   <div className="central-meta">
                     <div className="editing-info">

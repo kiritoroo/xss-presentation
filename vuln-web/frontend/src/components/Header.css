@@ -36,6 +36,13 @@
   color: #545454;
 }
 
+.header-logo-img {
+  position: relative;
+  top: 10px;
+  left: 100px;
+  width: 100px;
+}
+
 /* menu */
 
 .header .header-menu {

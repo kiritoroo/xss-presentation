@@ -16,7 +16,7 @@ const postSchema = new Schema({
     require: true,
     default: "post"
   },
-  createDAt: {
+  createdAt: {
     type: Date,
     defalt: Date.now
   },
