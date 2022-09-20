@@ -20,6 +20,7 @@ body {
 }
 
 .logo {
+  position: absolute;
   margin: 20px 40px;
 }
 .logo span {
@@ -66,12 +67,6 @@ body {
     top: 10px;
   }
 }
-body {
-  background-color: #0c0c18;
-  margin: 0px;
-  overflow: hidden;
-}
-
 .landscape {
   background: url(assets/rotate.png) no-repeat;
   width: 400px;
