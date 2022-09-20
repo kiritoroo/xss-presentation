@@ -20,7 +20,7 @@ export default class ParticleFake {
   }
 
   createPoints() {
-    const number   = 13000,
+    const number   = 8000,
           max      = 1500
     const vertices = []
 

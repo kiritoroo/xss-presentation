@@ -7,6 +7,7 @@ import { FilmPass } from 'three/examples/jsm/postprocessing/FilmPass'
 import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass'
 import { FocusShader } from 'three/examples/jsm/shaders/FocusShader'
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass'
+// import { GlitchPass } from 'three/examples/jsm/postprocessing/GlitchPass'
 
 export default class PostProcess {
   constructor() {
@@ -37,6 +38,7 @@ export default class PostProcess {
       this.PARAMS.bloom.radius,
       this.PARAMS.bloom.threshold
     )
+    // const glitchPass      = new GlitchPass(10)
 
     shaderPass.uniforms.screenWidth.value = this.sizes.width
     shaderPass.uniforms.screenHeight.value = this.sizes.height
@@ -46,6 +48,7 @@ export default class PostProcess {
     this.effectComposer.addPass(renderPass)
     this.effectComposer.addPass(shaderPass)
     this.effectComposer.addPass(bloomPass)
+    // this.effectComposer.addPass(glitchPass)
   }
 
   resize() {

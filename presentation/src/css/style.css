@@ -66,18 +66,52 @@ body {
     top: 10px;
   }
 }
+body {
+  background-color: #0c0c18;
+  margin: 0px;
+  overflow: hidden;
+}
+
+.landscape {
+  background: url(assets/rotate.png) no-repeat;
+  width: 400px;
+  height: 400px;
+  background-size: cover;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}
+
+.nav {
+  position: fixed;
+  display: none;
+  left: 0%;
+  top: 50%;
+  z-index: 12;
+  width: 100px;
+  height: 600px;
+  margin-top: -300px;
+}
+
 .nav ul {
   z-index: 999;
   position: relative;
   left: 40px;
   height: 240px;
-  top: 35vh;
+  top: 180px;
 }
+
 .nav ul li {
   height: 40px;
   position: relative;
   white-space: nowrap;
 }
+
+z.nav ul li.active i {
+  background-image: url(assets/5984900200176.png);
+}
+
 .nav ul li i {
   width: 80px;
   height: 44px;
@@ -87,7 +121,8 @@ body {
   font-style: normal;
   display: inline;
 }
-.nav ul li i::before {
+
+.nav ul li i:before {
   content: "";
   width: 0;
   height: 0;
@@ -101,21 +136,19 @@ body {
   left: -21px;
   top: 8px;
 }
+
 .nav ul li.active i {
   color: #fff;
 }
-.nav ul li.active i::before {
+
+.nav ul li.active i:before {
   width: 15px;
   height: 15px;
   border: 1px solid #fff;
   left: -27px;
   top: 2px;
 }
-.nav ul li.active span {
-  color: #fff;
-  opacity: 1;
-  transform: translateX(0px);
-}
+
 .nav ul li span {
   font-size: 12px;
   color: #a6a6aa;
@@ -127,25 +160,32 @@ body {
   text-transform: uppercase;
   top: 3px;
 }
+
 .nav ul li span:hover {
   color: #fff;
   transition-delay: 0s;
 }
+
 .nav ul li:nth-of-type(1) span {
   transition-delay: 0s;
 }
+
 .nav ul li:nth-of-type(2) span {
   transition-delay: 0.02s;
 }
+
 .nav ul li:nth-of-type(3) span {
   transition-delay: 0.04s;
 }
+
 .nav ul li:nth-of-type(4) span {
   transition-delay: 0.06s;
 }
+
 .nav ul li:nth-of-type(5) span {
   transition-delay: 0.08s;
 }
+
 .nav ul li:nth-of-type(6) span {
   transition-delay: 0.1s;
 }
@@ -153,4 +193,154 @@ body {
 .nav:hover ul li span {
   opacity: 1;
   transform: translateX(0px);
+}
+
+.nav ul li.active span {
+  color: #fff;
+  opacity: 1;
+  transform: translateX(0px);
+}
+
+.text-container {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  display: none;
+  touch-action: none;
+  transform: translate3d(0px, 0px, 0px);
+  transition: all 700ms ease 0s;
+  z-index: 1;
+}
+
+.text-container .section {
+  width: 100%;
+  height: 100%;
+}
+
+.fp-section {
+  position: relative;
+  box-sizing: border-box;
+}
+
+html.fp-enabled,
+.fp-enabled body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.fp-tableCell {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  top: 0;
+  height: 100%;
+}
+
+.section.fp-completely .txt {
+  opacity: 1;
+  filter: blur(0px);
+}
+
+.section.fp-completely .txt,
+.section.fp-completely .dots {
+  opacity: 1;
+  filter: blur(0px);
+}
+
+canvas {
+  position: absolute;
+  top: 0;
+  z-index: 0;
+}
+
+.section .txt {
+  position: absolute;
+  top: 50%;
+  width: 31%;
+  -webkit-user-select: none;
+  z-index: 1;
+}
+
+.txt img {
+  width: 100%;
+  pointer-events: none;
+}
+
+.section .txt,
+.section .dots {
+  opacity: 0;
+  transition: opacity 2s 0.5s, filter 2s 0.5s;
+  filter: blur(100px);
+}
+
+.section.fp-completely .txt,
+.section.fp-completely .dots {
+  opacity: 1;
+  filter: blur(0px);
+}
+
+.section .dots {
+  z-index: 12;
+  opacity: 0;
+  top: 52%;
+  right: 0%;
+  position: absolute;
+  width: 100%;
+}
+
+.section .txt,
+.section .dots {
+  opacity: 0;
+  transition: opacity 2s 0.5s, filter 2s 0.5s;
+  filter: blur(100px);
+}
+
+.section .fp-tableCell .dots {
+  transition-delay: 1s, 1s;
+}
+
+.webglyes .dot {
+  width: 0.3rem;
+  height: 0.3rem;
+}
+
+.page1 .txt {
+  top: 40%;
+  right: 6%;
+}
+
+.page2 .txt {
+  top: 42%;
+  left: 20%;
+}
+
+.page3 .txt {
+  right: 0%;
+  top: 40%;
+}
+
+.page4 .txt {
+  top: 28%;
+  right: 5%;
+}
+
+.page5 .txt {
+  top: 33%;
+  left: 35%;
+}
+
+.page5 .txt-bottom {
+  top: 2%;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.section {
+  color: white;
 }

@@ -5,6 +5,8 @@ import ParticleBackground from './ParticleBackground'
 import ParticleIntro from './ParticleIntro'
 import ParticleXSS from './ParticleXSS'
 import ParticleFake from './ParticleFake'
+import ParticleBug from './ParticleBug'
+import ParticleThank from './ParticleThank'
 
 import gsap from 'gsap'
 
@@ -19,16 +21,28 @@ export default class ParticleSystem {
     this.particleFake   = new ParticleFake()
     this.particleXSS    = new ParticleXSS()
     this.particleBG     = new ParticleBackground()
+    this.particleBug    = new ParticleBug()
+    this.particleThank  = new ParticleThank()
 
     this.allParticles     = []
     this.currentParticle  = { points: null, update: null }
     this.currentIndex     = 0
 
     this.init()
+
+    this.bindEvents()
   }
 
   init() {
-    this.allParticles.push( this.particleIntro, this.particleXSS )
+    this.allParticles.push(
+      this.particleIntro, 
+      this.particleXSS, 
+      this.particleBug,
+      this.particleXSS, 
+      this.particleXSS,
+      this.particleThank
+    )
+
     this.currentParticle = {
       points: this.allParticles[this.currentIndex].points,
       update: () => this.allParticles[this.currentIndex].update()
@@ -40,11 +54,16 @@ export default class ParticleSystem {
     this.scene.add( this.currentParticle.points )
 
     setTimeout(() => {
-      this.onNextStage()
-    }, 2000)
+      this.changeModel(this.currentIndex + 1)
+    }, 1000)
   }
 
-  onNextStage() {
+  bindEvents() {
+    document.addEventListener('scene:prevStage', (e) => this.onPrev(e))
+    document.addEventListener('scene:nextStage', (e) => this.onNext(e))
+  }
+
+  changeModel(index) {
 
     const fixPosition = [
       {
@@ -53,41 +72,78 @@ export default class ParticleSystem {
         y: 0,
         z: 0,
         rotation: {
-          x: 0
-        }
+          x: 0,
+          y: 0,
+          z: 0
+        },
+        duration: 2
       },
       {
         scale: 1000,
+        x: 0,
+        y: 0,
+        z: 0,
+        rotation: {
+          x: 0,
+          y: Math.PI / 8,
+          z: 0
+        },
+        duration: 1
+      },
+      {
+        scale: 5,
+        x: -20,
+        y: 0,
+        z: 0,
+        rotation: {
+          x: 0,
+          y: 0,
+          z: 0
+        },
+        duration: 2
+      },
+      {
+        scale: 3000,
         x: 100,
         y: 150,
         z: 0,
         rotation: {
-          x: -Math.PI / 8
-        }
-      }
+          x: 0,
+          y: 0,
+          z: 0
+        },
+        duration: 1
+      },
+      {
+        scale: 2000,
+        x: 200,
+        y: 150,
+        z: 0,
+        rotation: {
+          x: 0,
+          y: 0,
+          z: 0
+        },
+        duration: 1
+      },
+      {
+        scale: 4,
+        x: -20,
+        y: 0,
+        z: 0,
+        rotation: {
+          x: 0,
+          y: 0,
+          z: 0
+        },
+        duration: 2
+      },
     ]
 
-    this.currentIndex = 1
+    this.currentIndex = index
     const nextPoins = this.allParticles[this.currentIndex].points.geometry.getAttribute('position')
     const currPoints = this.currentParticle.points.geometry.getAttribute('position')
     const fakePoints = this.particleFake.points.geometry.getAttribute('position')
-
-    //----- danger
-    // this.currentParticle.points.geometry.attributes.position.array.forEach((point, point_index) => {
-    //   let nextPosIndex = point_index % nextPoins.array.length
-    //   let nextPos = nextPoins.array[nextPosIndex]
-    //   let objPos = { pos: point }
-    //   gsap.to(objPos, {
-    //     pos: nextPos,
-    //     ease: 'easeIn',
-    //     delay: 10 * Math.random(),
-    //     onUpdate: () => {
-    //       // point = objPos.pos
-    //       currPoints.array[point_index] = objPos.pos * fixPosition[this.currentIndex].scale
-    //       currPoints.needsUpdate = true
-    //     }
-    //   }).play()
-    // })
 
     let vertices = []
 
@@ -108,8 +164,8 @@ export default class ParticleSystem {
         x: () => vertice.x,
         y: () => vertice.y,
         z: () => vertice.z,
-        delay: (5 * Math.random()),
-        duration: 2,
+        delay: (this.PARAMS.delay * Math.random()),
+        duration: fixPosition[index].duration,
         ease: 'power3',
         onUpdate: () => {
           currPoints.array[nextPointIndex] = objPoint.x
@@ -119,64 +175,41 @@ export default class ParticleSystem {
 
           fakePoints.array[nextPointIndex] = objPoint.x
           fakePoints.array[nextPointIndex + 1] = objPoint.y
-          // fakePoints.array[nextPointIndex + 2] = objPoint.z
           fakePoints.needsUpdate = true
           this.particleFake.points.material.opacity -= 0.000008
-
-          // this.currentParticle.points.rotation.z += 0.000005
         },
         onComplete: () => {
 
         }
       })
     }
-
-    // vertices.forEach((vertice, index) => {
-    //   let objPoint = {
-    //     x: currPoints.array[index],
-    //     y: currPoints.array[index + 2],
-    //     z: currPoints.array[index + 3],
-    //   }
-    //   gsap.to(objPoint, {
-    //     x: () => vertice.x,
-    //     y: () => vertice.y,
-    //     z: () => vertice.z,
-    //     delay: 1 * Math.random(),
-    //     ease: 'easeIn',
-    //     onUpdate: () => {
-    //       currPoints.array[index] = objPoint.x
-    //       currPoints.array[index + 2] = objPoint.y
-    //       currPoints.array[index + 3] = objPoint.z
-    //       currPoints.needsUpdate = true
-    //     }
-    //   })
-    // })
-    //----- danger
-
     this.currentParticle.points.updateMatrix()
 
-    //----- fix 
-    this.currentParticle.points.rotation.x = Math.PI / 2
     gsap.to(this.currentParticle.points.rotation, {
-      z: fixPosition[this.currentIndex].rotation.x,
+      x: fixPosition[this.currentIndex].rotation.x,
+      y: fixPosition[this.currentIndex].rotation.y,
+      z: fixPosition[this.currentIndex].rotation.z,
       duration: 8,
       ease: 'easeIn'
     }).play()
 
-    //----- fix 
-
     this.currentParticle.update = () => this.allParticles[this.currentIndex].update()
+  }
+
+  onPrev(e) {
+    this.currentIndex -= 1
+    this.changeModel(this.currentIndex)
+    console.log('change model prev');
+  }
+
+  onNext(e) {
+    this.currentIndex += 1
+    this.changeModel(this.currentIndex)
+    console.log('change model next');
   }
 
   update() {
     this.particleBG.update()
-    // this.currentParticle.update()
-
-    // if (this.currentIndex == 0){
-    //   this.particleIntro.update()
-    // } else if (this.currentIndex == 1) {
-    //   this.particleXSS.update()
-    // }
 
     if (this.particleFake) {
       this.particleFake.update()

@@ -1,0 +1,147 @@
+
+.text-container {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  display: none;
+  touch-action: none;
+  transform: translate3d(0px, 0px, 0px);
+  transition: all 700ms ease 0s;
+  z-index: 1;
+}
+
+.text-container .section {
+  width: 100%;
+  height: 100%;
+}
+
+.fp-section {
+  position: relative;
+  box-sizing: border-box;
+}
+
+html.fp-enabled,
+.fp-enabled body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.fp-tableCell {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  top: 0;
+  height: 100%;
+}
+
+.section.fp-completely .txt {
+  opacity: 1;
+  -webkit-filter: blur(0px);
+  filter: blur(0px);
+}
+
+.section.fp-completely .txt,
+.section.fp-completely .dots {
+  opacity: 1;
+  -webkit-filter: blur(0px);
+  filter: blur(0px);
+}
+
+canvas {
+  position: absolute;
+  top: 0;
+  z-index: 0;
+}
+
+.section .txt {
+  position: absolute;
+  top: 50%;
+  width: 31%;
+  -webkit-user-select: none;
+  z-index: 1;
+}
+
+.txt img {
+  width: 100%;
+  pointer-events: none;
+}
+
+.section .txt,
+.section .dots {
+  opacity: 0;
+  -webkit-transition: opacity 2s .5s, -webkit-filter 2s .5s;
+  transition: opacity 2s .5s, -webkit-filter 2s .5s;
+  transition: opacity 2s .5s, filter 2s .5s;
+  transition: opacity 2s .5s, filter 2s .5s, -webkit-filter 2s .5s;
+  -webkit-filter: blur(100px);
+  filter: blur(100px);
+}
+
+.section.fp-completely .txt,
+.section.fp-completely .dots {
+  opacity: 1;
+  -webkit-filter: blur(0px);
+  filter: blur(0px);
+}
+
+.section .dots {
+  z-index: 12;
+  opacity: 0;
+  top: 52%;
+  right: 0%;
+  position: absolute;
+  width: 100%;
+}
+
+.section .txt,
+.section .dots {
+  opacity: 0;
+  -webkit-transition: opacity 2s .5s, -webkit-filter 2s .5s;
+  transition: opacity 2s .5s, -webkit-filter 2s .5s;
+  transition: opacity 2s .5s, filter 2s .5s;
+  transition: opacity 2s .5s, filter 2s .5s, -webkit-filter 2s .5s;
+  -webkit-filter: blur(100px);
+  filter: blur(100px);
+}
+
+.section .fp-tableCell .dots {
+  -webkit-transition-delay: 1s, 1s;
+  transition-delay: 1s, 1s;
+}
+
+.webglyes .dot {
+  width: .3rem;
+  height: .3rem;
+}
+
+
+.page1 .txt {
+  top: 40%;
+  right: 6%;
+}
+
+.page2 .txt {
+  top: 42%;
+  left: 20%;
+}
+
+.page3 .txt {
+  right: 0%;
+  top: 40%;
+}
+
+.page4 .txt {
+  top: 28%;
+  right: 5%;
+}
+
+.page5 .txt {
+  top: 33%;
+  left: 35%;
+}
+
+.page5 .txt-bottom {
+  top: 2%;
+}

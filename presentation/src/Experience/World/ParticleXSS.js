@@ -36,7 +36,7 @@ export default class ParticleXSS {
     this.points = new THREE.Points( this.geometry, this.material )
 
     this.points.scale.set( 1000, 1000, 1000 )
-    this.points.rotation.x = Math.PI / 2
+    this.points.geometry.rotateX(Math.PI / 2)
     this.points.rotation.z = - Math.PI / 8
 
     // this.scene.add(this.points)
