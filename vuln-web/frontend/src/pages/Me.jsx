@@ -207,7 +207,7 @@ export default function Me() {
       <Header/>
 
       <div className='profile-cover'>
-        <img src={ userData.coverPhoto=='' ? './public/default-cover.png' : userData.coverPhoto }/>
+        <img src={ userData.coverPhoto=='' ? './default-cover.png' : userData.coverPhoto }/>
         <div className='upload'>
           <input ref={coverImgRef} id="coverUpload" type="file" accept="image/*" name="coverAvatar" onChange={uploadCover} required/>
           <label htmlFor="coverUpload"></label>
@@ -220,7 +220,7 @@ export default function Me() {
           <label htmlFor="avatarUpload"></label>
         </div>
         <div className="preview">
-          <img src={ userData.profileImage=='' ? './public/default-avatar.png' : userData.profileImage }/>
+          <img src={ userData.profileImage=='' ? './default-avatar.png' : userData.profileImage }/>
           <div className='profile-name'>
             <div>{userData.fullname}</div>
           </div>

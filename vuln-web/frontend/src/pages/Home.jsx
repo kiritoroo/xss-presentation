@@ -49,6 +49,12 @@ export default function Home() {
 
   const [postsData, setPostsData] = useState([])
 
+
+  const initComment = {
+    _id   : "",
+    comment: ""
+  }
+
   // const initPost = {
   //   caption: "",
   //   image: "",
@@ -75,6 +81,8 @@ export default function Home() {
 
   const [userData, setUserData] = useState(initUser)
 
+  const [commentData, setCommentData] = useState(initComment)
+
   const {
     data,
     isLoading,
@@ -100,11 +108,11 @@ export default function Home() {
   })
 
   const {
-    dataPost,
-    isLoadingPost,
-    isErrorPost,
-    isFetchingPost,
-    refetchPost
+    data: dataPost,
+    isLoading: isLoadingPost,
+    isError: isErrorPost,
+    isFetching: isFetchinhPost,
+    refetch: refetchPost
   } = useQuery('posts', fetchPosts, {
     retry: false,
     select: (data) => {
@@ -166,6 +174,44 @@ export default function Home() {
     if (res.status == 'success') {
       captionInputRef.current.value = ""
       postImageRef.current.src = ""
+      refetchPost()
+    }
+  }
+
+  const onCommentChange = (e) => {
+    setCommentData((prev) => (
+      { ...prev, comment: e.target.value, _id: e.target.id }
+    ))
+  }
+
+  const onAddComment = async (e) => {
+    e.preventDefault()
+
+    const res = await axios({
+      url: '/postComment',
+      baseURL: 'http://localhost:5000/api',
+      method: 'POST',
+      data: {
+        _id: commentData._id,
+        comment: commentData.comment
+      },
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      withCredentials: true
+    })
+    .then(res => {
+      return res.data
+    })
+    .catch(err => {
+      return err.response.data
+    })
+
+    if (res.status == 'success') {
+      setCommentData(initComment)
+      refetchPost()
+      setPostsData(dataPost.data)
     }
   }
 
@@ -191,7 +237,7 @@ export default function Home() {
                       <div className="central-meta">
                         <div className="new-postbox">
                           <figure>
-                            <img id="user-profile" src={ userData.profileImage=='' ? './public/default-avatar.png' : userData.profileImage }/>
+                            <img id="user-profile" src={ userData.profileImage=='' ? './default-avatar.png' : userData.profileImage }/>
                           </figure>
 
                           <div className="newpst-input">
@@ -236,14 +282,14 @@ export default function Home() {
                     {/*  */}
 
                     { postsData.map(post => {
-                      console.log(post)
+                      // console.log(post)
 
                       return (
-                        <div key={post.createdAt} className="central-meta item">
+                        <div key={post._id} className="central-meta item">
                         <div className="user-post">
                           <div className="friend-info">
                             <figure>
-                              <img id="user-profile" src={ post.user.profileImage=='' ? './public/default-avatar.png' : base_url + '/' + post.user.profileImage }/>
+                              <img id="user-profile" src={ post.user.profileImage=='' ? './default-avatar.png' : base_url + '/' + post.user.profileImage }/>
                             </figure>
                             <div className="friend-name">
                               <ins>
@@ -251,48 +297,76 @@ export default function Home() {
                                   {post.user.fullname}
                                 </a>
                               </ins>
-                              <span> Bài viết: Ngày { new Date(post.createdAt).getDate() }, tháng { new Date(post.createdAt).getMonth() + 1 }, năm { new Date(post.createdAt).getFullYear() } - lúc: { new Date(post.createdAt).getHours() }h{ new Date(post.createdAt).getMinutes() }p</span>
+                              <span> Bài viết: { new Date(post.createdAt).getDate() } tháng { new Date(post.createdAt).getMonth() + 1 }, { new Date(post.createdAt).getFullYear() } - lúc { new Date(post.createdAt).getHours() }:{ new Date(post.createdAt).getMinutes() }</span>
                             </div>
                             <div className="post-meta">
                               <div className="description">
                                 <p>{post.caption}</p>
                               </div>
                               <img src={ base_url + '/' + post.image }/>
+
+                              <div className="we-video-info">
+                                <ul>
+                                  <li>
+                                    <span className="none">
+                                      <i className="ti-thumb-up"></i>
+                                      <ins>15</ins>
+                                    </span>
+                                  </li>
+                                  <li>
+                                    <span className="comment" title="Comments">
+                                      <i className="fa fa-comments-o"></i>
+                                      <ins id="count-post-comments"> {post.comments.length} </ins>
+                                    </span>
+                                  </li>
+                                </ul>
+                              </div>
+
                             </div>
                           </div>
 
                           {/* Commment */}
+
                           <div id='post-comments'>
                             <div className="coment-area">
-                              <ul className="we-comet" style={{ maxHeight: '300px', overflowY: 'scroll' }}>
-                                <li>
-                                  <div className="comet-avatar">
-                                    <img src={ userData.profileImage=='' ? './public/default-avatar.png' : userData.profileImage }/>
-                                  </div>
-                                  <div className="we-comment">
-                                    <div className="coment-head">
-                                      <h5>{userData.fullname}</h5>
-                                      <span>Published: {Date.now().toString()}</span>
-                                      <a className="we-reply" title="Reply"><i className="fa fa-reply"></i></a>
-                                    </div>
-                                    <p>Waaaaaaa, cho minh xin 1 cay ca` rem!</p>
-                                  </div>
 
-                                  <ul>
-                                    {/* Reply */}
-                                  </ul>
-                                </li>
-                              </ul>
+                            <ul className="we-comet" style={{ maxHeight: '300px', overflowY: 'scroll' }}>
 
+                            { post.comments.map(comment => {
+                            // console.log(comment)
+
+                            return (
+                              <li key={comment._id}>
+                                <div className="comet-avatar">
+                                  <img src={ comment.user.profileImage=='' ? './default-avatar.png' :  base_url + '/' + comment.user.profileImage }/>
+                                </div>
+                                <div className="we-comment">
+                                  <div className="coment-head">
+                                    <h5>{comment.user.name}</h5>
+                                    <span> { new Date(comment.createAt).getDate() } tháng { new Date(comment.createAt).getMonth() + 1 }, { new Date(comment.createAt).getFullYear() } - lúc { new Date(comment.createAt).getHours() }:{ new Date(post.createdAt).getMinutes() }</span>
+                                    <a className="we-reply" title="Reply"><i className="fa fa-reply"></i></a>
+                                  </div>
+                                  <p dangerouslySetInnerHTML={{ __html: comment.comment }}></p>
+                                </div>
+
+                                <ul>
+                                  {/* Reply */}
+                                </ul>
+                              </li>
+                            )
+                            }) }
+
+                            </ul>
+
+                              {/* Usser Commment */}
                               <ul className="we-comet">
                                 <li className="post-comment">
                                   <div className="comet-avatar">
-                                    <img src={ userData.profileImage=='' ? './public/default-avatar.png' : userData.profileImage }/>
+                                    <img src={ userData.profileImage=='' ? './default-avatar.png' : userData.profileImage }/>
                                   </div>
                                   <div className="post-comt-box">
-                                    <form>
-                                      <input type="hidden"/>
-                                      <textarea name="comment" placeholder="Viết bình luận..."></textarea>
+                                    <form onSubmit={onAddComment}>
+                                      <textarea id={post._id}  value={commentData.comment} onChange={(e) => onCommentChange(e)} name="comment" placeholder="Viết bình luận..."></textarea>
                                       <button type="submit">Gửi</button>
                                     </form>
                                   </div>
