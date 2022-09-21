@@ -6,8 +6,24 @@ const base_url          = "http://localhost:5000"
 
 // @route   GET /api/getNewFeeds
 const postGetAll = asyncHandler(async (req, res) => {
+  const { user: uss } = req.session
 
+  const user = await User.findOne({"_id": uss.id})
 
+  const data = await Post
+    .find()
+    .limit(10)
+    .sort({
+      "createdAt": -1
+    })
+
+  return res
+    .status(200)
+    .json({
+      status    : "success",
+      message   : "Đã xác thực!",
+      data      : data
+    })
 })
 
 // @route   POST /api/postAdd
@@ -29,7 +45,7 @@ const postAdd = asyncHandler(async (req, res) => {
     const base64Image = imageData.split(';base64,').pop()
 
     fs.writeFile(imagePath, base64Image, {encoding: 'base64'}, (err) => {
-      console.log('Đã thêm ảnh bài viết mới');
+      console.log('Một bài viết mới được thêm');
     })
   }
 

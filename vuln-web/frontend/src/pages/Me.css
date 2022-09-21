@@ -1,7 +1,7 @@
 /* Cover ---------- */
 
 .profile-cover {
-  background-color: lightblue;
+  background-color: white;
   height: 400px;
   display: block;
 }
@@ -136,6 +136,7 @@
   position: relative;
   top: -70px;
   z-index: 99;
+  width: 50vw;
   color: #088DCD;
   left: 220px;
   font-weight: bold;
