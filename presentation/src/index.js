@@ -7,14 +7,15 @@ import Layout from "./Layout";
 
 const App = () => {
   window.Layout = new Layout()
-  const _3DStage = new Experience(document.getElementById("stage"))
-  // const _2DStage = new Stage()
+  // const _3DStage = new Experience(document.getElementById("stage"))
+  const _2DStage = new Stage()
 }
 
 if (document.readyState === 'complete') {
   App()
 } else {
-  document.addEventListener('DOMContentLoaded', App())
+  // document.addEventListener('DOMContentLoaded', App())
+  App()
 }
 
 //----- Singleton

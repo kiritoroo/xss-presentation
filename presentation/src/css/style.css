@@ -339,3 +339,163 @@ body {
 .section {
   color: white;
 }
+
+/*  slider */
+
+
+.image {
+  width: 100%;
+  height: 200px;
+}
+.radio {
+  /*display: none;*/
+  position: relative;
+  top: 95vh;
+  z-index: 999;
+  left: 2vw;
+  opacity: 10%;
+}
+
+.images {
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+.images-inner {
+  width: 500%;
+  transition: all 800ms cubic-bezier(0.770, 0.000, 0.175, 1.000);
+  transition-timing-function: cubic-bezier(0.770, 0.000, 0.175, 1.000);
+}
+.image-slide {
+  width: 20%;
+  float: left;
+}
+.image-slide,
+.fake-radio,
+.radio-btn {
+  transition: all 0.5s ease-out;
+}
+.fake-radio {
+  float: right;
+}
+
+
+/* Move slides overflowed container */
+#slide1:checked ~ .images .images-inner {
+  margin-left: 0;
+}
+#slide2:checked ~ .images .images-inner {
+  margin-left: -100%;
+}
+#slide3:checked ~ .images .images-inner {
+  margin-left: -200%;
+}
+#slide4:checked ~ .images .images-inner {
+  margin-left: -300%;
+}
+#slide5:checked ~ .images .images-inner {
+  margin-left: -400%;
+}
+
+
+.radio-btn {
+  width: 9px;
+  height: 9px;
+  border-radius: 5px;
+  background: gray;
+  display: inline-block !important;
+  margin: 0 1px;
+  cursor: pointer;
+}
+/* Color of bullets - END */
+
+
+
+
+/* Text of slides */
+#slide1:checked ~ .labels .label:nth-child(1),
+#slide2:checked ~ .labels .label:nth-child(2),
+#slide3:checked ~ .labels .label:nth-child(3),
+#slide4:checked ~ .labels .label:nth-child(4),
+#slide5:checked ~ .labels .label:nth-child(5) {
+  opacity: 1;
+}
+
+.label {
+  opacity: 0;
+  position: absolute;
+}
+/* Text of slides - END */
+
+
+
+
+/*  Mod */
+.section {
+  height: 100vh;
+}
+
+.images {
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.image {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.image.blur {
+  backdrop-filter: blur(10px);
+}
+
+.image .text-box {
+  width: 1000px;
+  /* height: 400px; */
+  margin-bottom: 60px;
+}
+
+.text-box .hight-light {
+  color: lightgreen;
+}
+
+.image .title-box {
+  color: lightgreen;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 100px;
+}
+
+
+.large {
+  font-size: 100px;
+}
+
+.big {
+  font-size: 50px;
+}
+
+.medium {
+  font-size: 35px;
+}
+
+.small {
+  font-size: 20px;
+}
+
+.red {
+  color: lightcoral;
+}
+
+.green {
+  color: lightgreen;
+}
+
+.text-center {
+  text-align: center;
+}

@@ -7,6 +7,7 @@ import ParticleXSS from './ParticleXSS'
 import ParticleFake from './ParticleFake'
 import ParticleBug from './ParticleBug'
 import ParticleThank from './ParticleThank'
+// import ParticleShield from './ParticleShield'
 
 import gsap from 'gsap'
 
@@ -23,6 +24,7 @@ export default class ParticleSystem {
     this.particleBG     = new ParticleBackground()
     this.particleBug    = new ParticleBug()
     this.particleThank  = new ParticleThank()
+    // this.particleShield  = new ParticleShield()
 
     this.allParticles     = []
     this.currentParticle  = { points: null, update: null }
@@ -35,7 +37,7 @@ export default class ParticleSystem {
 
   init() {
     this.allParticles.push(
-      this.particleIntro, 
+      this.particleIntro,
       this.particleXSS, 
       this.particleBug,
       this.particleXSS, 
@@ -68,9 +70,11 @@ export default class ParticleSystem {
     const fixPosition = [
       {
         scale: 1,
-        x: 0,
-        y: 0,
-        z: 0,
+        position: {
+          x: 0,
+          y: 0,
+          z: 0
+        },
         rotation: {
           x: 0,
           y: 0,
@@ -80,9 +84,11 @@ export default class ParticleSystem {
       },
       {
         scale: 1000,
-        x: 0,
-        y: 0,
-        z: 0,
+        position: {
+          x: 100,
+          y: 0,
+          z: 200
+        },
         rotation: {
           x: 0,
           y: Math.PI / 8,
@@ -92,11 +98,13 @@ export default class ParticleSystem {
       },
       {
         scale: 5,
-        x: -20,
-        y: 0,
-        z: 0,
-        rotation: {
+        position: {
           x: 0,
+          y: 0,
+          z: 0
+        },
+        rotation: {
+          x: Math.PI / 2,
           y: 0,
           z: 0
         },
@@ -104,33 +112,39 @@ export default class ParticleSystem {
       },
       {
         scale: 3000,
-        x: 100,
-        y: 150,
-        z: 0,
-        rotation: {
+        position: {
           x: 0,
           y: 0,
+          z: 0
+        },
+        rotation: {
+          x: 0,
+          y: Math.PI / 8,
           z: 0
         },
         duration: 1
       },
       {
         scale: 2000,
-        x: 200,
-        y: 150,
-        z: 0,
-        rotation: {
+        position: {
           x: 0,
           y: 0,
           z: 0
+        },
+        rotation: {
+          x: 0,
+          y: Math.PI,
+          z: Math.PI / 4
         },
         duration: 1
       },
       {
         scale: 4,
-        x: -20,
-        y: 0,
-        z: 0,
+        position: {
+          x: 0,
+          y: 0,
+          z: 0
+        },
         rotation: {
           x: 0,
           y: 0,
@@ -150,9 +164,9 @@ export default class ParticleSystem {
     for (let i = 0; i < nextPoins.array.length; i+=3) {
       let vertice = new THREE.Vector3()
       let nextPointIndex = i % currPoints.array.length
-      vertice.setX(nextPoins.array[nextPointIndex] * fixPosition[this.currentIndex].scale + fixPosition[this.currentIndex].x)
-      vertice.setY(nextPoins.array[nextPointIndex + 1] * fixPosition[this.currentIndex].scale + fixPosition[this.currentIndex].y)
-      vertice.setZ(nextPoins.array[nextPointIndex + 2] * fixPosition[this.currentIndex].scale + fixPosition[this.currentIndex].z) 
+      vertice.setX(nextPoins.array[nextPointIndex] * fixPosition[this.currentIndex].scale)
+      vertice.setY(nextPoins.array[nextPointIndex + 1] * fixPosition[this.currentIndex].scale)
+      vertice.setZ(nextPoins.array[nextPointIndex + 2] * fixPosition[this.currentIndex].scale) 
       vertices.push(vertice)
 
       let objPoint = {
@@ -189,7 +203,15 @@ export default class ParticleSystem {
       x: fixPosition[this.currentIndex].rotation.x,
       y: fixPosition[this.currentIndex].rotation.y,
       z: fixPosition[this.currentIndex].rotation.z,
-      duration: 8,
+      duration: 2, //8
+      ease: 'easeIn'
+    }).play()
+
+    gsap.to(this.currentParticle.points.position, {
+      x: fixPosition[this.currentIndex].position.x,
+      y: fixPosition[this.currentIndex].position.y,
+      z: fixPosition[this.currentIndex].position.z,
+      duration: 2,
       ease: 'easeIn'
     }).play()
 

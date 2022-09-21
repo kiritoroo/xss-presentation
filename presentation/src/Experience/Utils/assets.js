@@ -4,11 +4,16 @@ export default [
     type: "model",
     path: "./xss.glb"
   },
-  {
-    name: "thankonly",
-    type: "model",
-    path: "./thankonly.glb"
-  },
+  // {
+  //   name: "thankonly",
+  //   type: "model",
+  //   path: "./thankonly.glb"
+  // // },
+  // {
+  //   name: "shield",
+  //   type: "model",
+  //   path: "./cybershield.glb"
+  // },
   {
     name: "mark",
     type: "texture",
@@ -22,6 +27,6 @@ export default [
   {
     name: "thank",
     type: "texture",
-    path: "./thank.png"
+    path: "./thank2.png"
   }
 ]

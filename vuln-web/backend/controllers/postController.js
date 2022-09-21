@@ -25,7 +25,7 @@ const postAdd = asyncHandler(async (req, res) => {
     imageData = req.body.imageData
 
     const nowTime = new Date().getTime()
-    imagePath = 'public/images/' + 'post_' + user.email + "_" + nowTime.toString()
+    imagePath = 'public/images/' + 'post_' + user.email + "_" + nowTime.toString() + '.jpg'
     const base64Image = imageData.split(';base64,').pop()
 
     fs.writeFile(imagePath, base64Image, {encoding: 'base64'}, (err) => {

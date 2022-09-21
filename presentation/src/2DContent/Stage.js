@@ -44,7 +44,7 @@ export default class Stage {
 
     $('.active').removeClass('active');
     $('.section').removeClass('fp-completely').hide();
-    $('.page' + (index + 1)).addClass('fp-completely').fadeIn(3000);
+    $('.page' + (index + 1)).addClass('fp-completely').fadeIn(1000);
     $('[index="' + index + '"]').parent().addClass("active");
   }
 

@@ -40,7 +40,7 @@ export default class ParticleBug {
 
   createPoints() {
     const vertices = []
-    const number = 11050
+    const number = 11050 //11050
     let count = 0
 
     this.geometry = new THREE.BufferGeometry()
@@ -93,7 +93,7 @@ export default class ParticleBug {
     })
 
     this.points = new THREE.Points( this.geometry, this.material )
-    // this.points.geometry.rotateX(-Math.PI / 2)
+    this.points.geometry.rotateX(-Math.PI / 2)
   }
 
   update() {

@@ -20,7 +20,7 @@ export default class ParticleIntro {
   }
 
   createPoints() {
-    const number   = 11500,  // 25000 for thankoyly
+    const number   = 11500,  // 11500 for thankoyly
           max      = 1500
     const vertices = []
 

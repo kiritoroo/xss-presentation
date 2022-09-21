@@ -37,6 +37,7 @@ export default function Header() {
       <header className='header'>
         {/* <NavLink className='header-logo' to='/'>Zing Me</NavLink> */}
         <img src="./zingme.png" alt="zingme" className='header-logo-img' onClick={() => navigate('/')}></img>
+        <div className='header-logo'>me</div>
         <input className="header-menu-btn" type="checkbox" id="menu-btn" />
         <label className="header-menu-icon" htmlFor="menu-btn"><span className="header-navicon"></span></label>
         <ul className="header-menu">
