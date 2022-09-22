@@ -346,7 +346,14 @@ export default function Home() {
                                     <span> { new Date(comment.createAt).getDate() } tháng { new Date(comment.createAt).getMonth() + 1 }, { new Date(comment.createAt).getFullYear() } - lúc { new Date(comment.createAt).getHours() }:{ new Date(post.createdAt).getMinutes() }</span>
                                     <a className="we-reply" title="Reply"><i className="fa fa-reply"></i></a>
                                   </div>
+
+
+
                                   <p dangerouslySetInnerHTML={{ __html: comment.comment }}></p>
+
+
+
+                                  
                                 </div>
 
                                 <ul>

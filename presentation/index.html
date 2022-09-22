@@ -86,6 +86,9 @@
                 <input type="radio" class="cs_anchor radio" name="slider" id="slide3"/>
                 <input type="radio" class="cs_anchor radio" name="slider" id="slide4"/>
                 <input type="radio" class="cs_anchor radio" name="slider" id="slide5"/>
+                <input type="radio" class="cs_anchor radio" name="slider" id="slide6"/>
+                <input type="radio" class="cs_anchor radio" name="slider" id="slide7"/>
+                <input type="radio" class="cs_anchor radio" name="slider" id="slide8"/>
                 <input type="radio" class="cs_anchor radio" name="slider" id="play1" checked=""/>
             
                 <div class="images">
@@ -98,7 +101,7 @@
                       <div class="image blur">
                         <div class="title-box big">Các loại tấn công XSS</div>
                         <div class="text-box big">• Reflected XSS</div>
-                        <div class="text-box big">• Stored XSS</div>
+                        <div class="text-box big"><span class="red">• Stored XSS</span></div>
                         <div class="text-box big">• DOM Based XSS</div>
                       </div>
                     </div>
@@ -111,6 +114,17 @@
                     <div class="image-slide">
                       <div class="image blur">
                         <div class="text-box big">• Khác với Reflected XSS là tấn công vào một số nạn nhân được nhắm đến, <span class="green">Stored XSS</span> hướng đến nhiều nạn nhân hơn.</div>
+                      </div>
+                    </div>
+                    <div class="image-slide">
+                      <div class="image blur">
+                        <div class="text-box medium">• Lỗ hổng này xảy ra khi ứng dụng web không kiểm tra kỹ các dữ liệu đầu vào trước khi chúng được lưu vào cơ sở dữ liệu <span class="green">(database, file, ...)</span>. Ví dụ các form góp ý, nhập thông tin, bình luận,... trên các trang web.</div>
+                        <div class="text-box medium">• Với kĩ thuật Stored XSS, hacker không khai thác trực tiếp mà phải thực hiện tối thiểu qua 2 bước</div>
+                      </div>
+                    </div>
+                    <div class="image-slide">
+                      <div class="image blur">
+                        <img class="picture-box-big" src="./cut1.png">
                       </div>
                     </div>
                     <div class="image-slide">
@@ -138,33 +152,53 @@
               <input type="radio" class="cs_anchor radio" name="slider" id="slide1"/>
               <input type="radio" class="cs_anchor radio" name="slider" id="slide2"/>
               <input type="radio" class="cs_anchor radio" name="slider" id="slide3"/>
+              <input type="radio" class="cs_anchor radio" name="slider" id="slide4"/>
+              <input type="radio" class="cs_anchor radio" name="slider" id="slide5"/>
+              <input type="radio" class="cs_anchor radio" name="slider" id="slide6"/>
               <input type="radio" class="cs_anchor radio" name="slider" id="play1" checked=""/>
           
               <div class="images">
                 <div class="images-inner">
                   <div class="image-slide">
-                    <div class="image bg-yellow" style="background-color:white;">image slide 1</div>
+                    <div class="image">
+
+                    </div>
                   </div>
                   <div class="image-slide">
-                    <div class="image bg-blue" style="background-color:pink;">imager slide 2</div>
+                    <div class="image blur">
+                      <div class="title-box large text-center">XSS Attack <br> Demo</div>
+                      <div class="text-box big text-center">Steal session cookie</div>
+                    </div>
                   </div>
                   <div class="image-slide">
-                    <div class="image bg-red" style="background-color:orange;">image slide 3</div>
+                    <div class="image blur">
+                      <div class="text-box big text-center green">Cookie - Session</div>
+                      <img class="picture-box-big" src="./session.png">
+                    </div>
+                  </div>
+                  <div class="image-slide">
+                    <div class="image blur">
+                      <div class="text-box big text-center green">Vulnerable Web Server</div>
+                      <img class="picture-box-small" src="./web-cookie.jpg">
+                      <img class="picture-box-medium" src="./d-cookie1.jpg">
+                      <img class="picture-box-medium" src="./d-cookie2.jpg">
+                    </div>
+                  </div>
+                  <div class="image-slide">
+                    <div class="image blur">
+                      <div class="text-box big text-center green">Vulnerable Web Client</div>
+                      <img class="picture-box-medium" src="./inner-html.jpg">
+                      <img class="picture-box-medium" src="./inner-html2.jpg">
+                    </div>
+                  </div>
+                  <div class="image-slide">
+                    <div class="image blur">
+
+                    </div>
                   </div>
                 </div>
               </div>
             
-              <div class="labels">
-                <label for="slide1" class="label">text slide 1</label>
-                <label for="slide2" class="label">text slide 2</label>
-                <label for="slide3" class="label">text slide 3</label>
-              
-                <div class="fake-radio">
-                  <label for="slide1" class="radio-btn"></label>
-                  <label for="slide2" class="radio-btn"></label>
-                  <label for="slide3" class="radio-btn"></label>
-                </div>
-              </div>
             </div>
           </section>
         </div>
@@ -172,9 +206,57 @@
 
       <div class="section page4 fp-section fp-table">
         <div class="fp-tableCell">
-          <div class="txt">
-            <h1>Content</h1>
-          </div>
+   <section>
+            <div id="homepage-slider" class="st-slider">
+
+              <input type="radio" class="cs_anchor radio" name="slider" id="slide1"/>
+              <input type="radio" class="cs_anchor radio" name="slider" id="slide2"/>
+              <input type="radio" class="cs_anchor radio" name="slider" id="slide3"/>
+              <input type="radio" class="cs_anchor radio" name="slider" id="slide4"/>
+              <input type="radio" class="cs_anchor radio" name="slider" id="slide5"/>
+              <input type="radio" class="cs_anchor radio" name="slider" id="slide6"/>
+              <input type="radio" class="cs_anchor radio" name="slider" id="play1" checked=""/>
+          
+              <div class="images">
+                <div class="images-inner">
+                  <div class="image-slide">
+                    <div class="image">
+
+                    </div>
+                  </div>
+                  <div class="image-slide">
+                    <div class="image blur">
+                      <div class="title-box large text-center">XSS Attack <br> Demo</div>
+                      <div class="text-box big text-center">Steal session cookie</div>
+                    </div>
+                  </div>
+                  <div class="image-slide">
+                    <div class="image blur">
+                      <div class="text-box big text-center green">Cookie - Session</div>
+                      <img class="picture-box-big" src="./session.png">
+                    </div>
+                  </div>
+                  <div class="image-slide">
+                    <div class="image blur">
+                      <div class="text-box big text-center green">Vulnerable Web Server</div>
+                    </div>
+                  </div>
+                  <div class="image-slide">
+                    <div class="image blur">
+                      <div class="text-box big text-center green">Vulnerable Web Client</div>
+                      <img class="picture-box-medium" src="./inner-html.jpg">
+                    </div>
+                  </div>
+                  <div class="image-slide">
+                    <div class="image blur">
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+            </div>
+          </section>
         </div>
       </div>
 

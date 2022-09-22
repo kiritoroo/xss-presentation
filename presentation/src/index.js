@@ -7,7 +7,7 @@ import Layout from "./Layout";
 
 const App = () => {
   window.Layout = new Layout()
-  const _3DStage = new Experience(document.getElementById("stage"))
+  // const _3DStage = new Experience(document.getElementById("stage"))
   const _2DStage = new Stage()
 }
 

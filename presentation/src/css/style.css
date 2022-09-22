@@ -90,7 +90,7 @@ body {
 }
 
 .nav ul {
-  z-index: 999;
+  z-index: 99;
   position: relative;
   left: 40px;
   height: 240px;
@@ -365,12 +365,12 @@ body {
   width: 100%;
 }
 .images-inner {
-  width: 500%;
+  width: 2000%;
   transition: all 800ms cubic-bezier(0.770, 0.000, 0.175, 1.000);
   transition-timing-function: cubic-bezier(0.770, 0.000, 0.175, 1.000);
 }
 .image-slide {
-  width: 20%;
+  width: 100vw;
   float: left;
 }
 .image-slide,
@@ -399,6 +399,52 @@ body {
 #slide5:checked ~ .images .images-inner {
   margin-left: -400%;
 }
+#slide6:checked ~ .images .images-inner {
+  margin-left: -500%;
+}
+#slide7:checked ~ .images .images-inner {
+  margin-left: -600%;
+}
+#slide8:checked ~ .images .images-inner {
+  margin-left: -700%;
+}
+#slide9:checked ~ .images .images-inner {
+  margin-left: -800%;
+}
+#slide10:checked ~ .images .images-inner {
+  margin-left: -900%;
+}
+#slide11:checked ~ .images .images-inner {
+  margin-left: -1000%;
+}
+#slide12:checked ~ .images .images-inner {
+  margin-left: -1100%;
+}
+#slide13:checked ~ .images .images-inner {
+  margin-left: -1200%;
+}
+#slide14:checked ~ .images .images-inner {
+  margin-left: -1300%;
+}
+#slide15:checked ~ .images .images-inner {
+  margin-left: -1400%;
+}
+#slide16:checked ~ .images .images-inner {
+  margin-left: -1500%;
+}
+#slide17:checked ~ .images .images-inner {
+  margin-left: -1600%;
+}
+#slide18:checked ~ .images .images-inner {
+  margin-left: -1700%;
+}
+#slide19:checked ~ .images .images-inner {
+  margin-left: -1800%;
+}
+#slide20:checked ~ .images .images-inner {
+  margin-left: -1900%;
+}
+
 
 
 .radio-btn {
@@ -410,26 +456,12 @@ body {
   margin: 0 1px;
   cursor: pointer;
 }
-/* Color of bullets - END */
 
-
-
-
-/* Text of slides */
-#slide1:checked ~ .labels .label:nth-child(1),
-#slide2:checked ~ .labels .label:nth-child(2),
-#slide3:checked ~ .labels .label:nth-child(3),
-#slide4:checked ~ .labels .label:nth-child(4),
-#slide5:checked ~ .labels .label:nth-child(5) {
-  opacity: 1;
-}
 
 .label {
   opacity: 0;
   position: absolute;
 }
-/* Text of slides - END */
-
 
 
 
@@ -471,6 +503,20 @@ body {
   margin-bottom: 100px;
 }
 
+.image .picture-box-big {
+  width: 900px;
+  margin-bottom: 20px;
+}
+
+.image .picture-box-medium {
+  width: 600px;
+  margin-bottom: 20px;
+}
+
+.image .picture-box-small {
+  width: 300px;
+  margin-bottom: 20px;
+}
 
 .large {
   font-size: 100px;

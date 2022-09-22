@@ -115,12 +115,12 @@ export default class ParticleSystem {
         position: {
           x: 0,
           y: 0,
-          z: 0
+          z: 1000
         },
         rotation: {
-          x: 0,
-          y: Math.PI / 8,
-          z: 0
+          x: Math.PI / 2,
+          y: 0,
+          z: Math.PI / 4
         },
         duration: 1
       },
@@ -129,7 +129,7 @@ export default class ParticleSystem {
         position: {
           x: 0,
           y: 0,
-          z: 0
+          z: -600
         },
         rotation: {
           x: 0,
@@ -211,7 +211,7 @@ export default class ParticleSystem {
       x: fixPosition[this.currentIndex].position.x,
       y: fixPosition[this.currentIndex].position.y,
       z: fixPosition[this.currentIndex].position.z,
-      duration: 2,
+      duration: 5,
       ease: 'easeIn'
     }).play()
 
