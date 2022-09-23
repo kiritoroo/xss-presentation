@@ -203,7 +203,7 @@ export default class ParticleSystem {
       x: fixPosition[this.currentIndex].rotation.x,
       y: fixPosition[this.currentIndex].rotation.y,
       z: fixPosition[this.currentIndex].rotation.z,
-      duration: 2, //8
+      duration: 3, //8
       ease: 'easeIn'
     }).play()
 
