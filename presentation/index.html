@@ -154,7 +154,6 @@
               <input type="radio" class="cs_anchor radio" name="slider" id="slide3"/>
               <input type="radio" class="cs_anchor radio" name="slider" id="slide4"/>
               <input type="radio" class="cs_anchor radio" name="slider" id="slide5"/>
-              <input type="radio" class="cs_anchor radio" name="slider" id="slide6"/>
               <input type="radio" class="cs_anchor radio" name="slider" id="play1" checked=""/>
           
               <div class="images">
@@ -191,11 +190,6 @@
                       <img class="picture-box-medium" src="./inner-html2.jpg">
                     </div>
                   </div>
-                  <div class="image-slide">
-                    <div class="image blur">
-
-                    </div>
-                  </div>
                 </div>
               </div>
             
@@ -206,7 +200,7 @@
 
       <div class="section page4 fp-section fp-table">
         <div class="fp-tableCell">
-   <section>
+          <section>
             <div id="homepage-slider" class="st-slider">
 
               <input type="radio" class="cs_anchor radio" name="slider" id="slide1"/>
@@ -226,30 +220,38 @@
                   </div>
                   <div class="image-slide">
                     <div class="image blur">
-                      <div class="title-box large text-center">XSS Attack <br> Demo</div>
-                      <div class="text-box big text-center">Steal session cookie</div>
+                      <div class="title-box large text-center">XSS Prevent</div>
                     </div>
                   </div>
                   <div class="image-slide">
                     <div class="image blur">
-                      <div class="text-box big text-center green">Cookie - Session</div>
-                      <img class="picture-box-big" src="./session.png">
-                    </div>
-                  </div>
-                  <div class="image-slide">
-                    <div class="image blur">
-                      <div class="text-box big text-center green">Vulnerable Web Server</div>
-                    </div>
-                  </div>
-                  <div class="image-slide">
-                    <div class="image blur">
-                      <div class="text-box big text-center green">Vulnerable Web Client</div>
-                      <img class="picture-box-medium" src="./inner-html.jpg">
-                    </div>
-                  </div>
-                  <div class="image-slide">
-                    <div class="image blur">
+                      <div class="text-box big text-center green">Data Validation</div>
+                      <div class="text-box medium text-center">Tách dữ liệu không đáng tin cậy khỏi nội dung của trình duyệt.</div>
 
+                    </div>
+                  </div>
+                  <div class="image-slide">
+                    <div class="image blur">
+                      <div class="text-box big text-center green">Filter Input</div>
+                      <div class="text-box medium text-center">Tại thời điểm nhận đầu vào của người dùng, tìm kiếm các từ khóa nguy hiểm và xóa chúng hoặc thay thế bằng các chuỗi trống.</div>
+                    </div>
+                  </div>
+                  <div class="image-slide">
+                    <div class="image blur">
+                      <div class="text-box big text-center green">HTTP Security</div>
+                      <div class="text-box medium">• <span class="red">Content Security Policy (CSP)</span> là một lớp bảo mật bổ sung giúp phát hiện, giảm thiểu và báo cáo các cuộc tấn công XSS.</div>
+                      <img class="picture-box-medium" src="./csp.jpg">
+                      <div class="text-box medium">• Để ngăn chặn XSS trong phản hồi HTTP không chứa bất kì HTML hoặc JavaScript nào hoặc theo ý định của mình, có thể đặt <span class="red">Content-Type</span> và <span class="red">X-Content-Type-Options</span></div>
+                      <img class="picture-box-medium" src="./ctt.jpg">
+                    </div>
+                  </div>
+                  <div class="image-slide">
+                    <div class="image blur">
+                      <div class="text-box big text-center green">Cookie Security</div>
+                      <div class="text-box medium text-center">Hạn chế quyền truy cập của Cookie với cờ httpOnly, secure.</div>
+                      <div class="text-box medium">• <span class="red">httpOnly</span> - bảo vệ cookie khỏi việc truy cập trái phép từ client, và chỉ được đính kèm trong header khi giao tiếp với Server.</div>
+                      <div class="text-box medium">• <span class="red">secure</span> - yêu cầu sử dụng giao thức HTTPS thay vì HTTP.</div>
+                      <div class="text-box medium text-center"><br><br><br>And more...</div>
                     </div>
                   </div>
                 </div>
@@ -262,12 +264,22 @@
 
       <div class="section page5 fp-section fp-table">
         <div class="fp-tableCell">
-          <!-- <div class="txt">
-            <h1>Content</h1>
-          </div> -->
-          <!-- <div class="txt txt-bottom">
-            <h1>Content</h1>
-          </div> -->
+          <section>
+            <div id="homepage-slider" class="st-slider">
+
+              <input type="radio" class="cs_anchor radio" name="slider" id="slide1"/>
+              <input type="radio" class="cs_anchor radio" name="slider" id="play1" checked=""/>
+          
+              <div class="images">
+                <div class="images-inner">
+                  <div class="image-slide">
+                    <div class="image">
+                      
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </section>
         </div>
       </div>
     </div>
