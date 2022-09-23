@@ -14,7 +14,7 @@ export default class Stage {
 
   async preload() {
     window.$ = window.jQuery = jQuery
-    this.currentAnimateIndex = 0
+    this.currentAnimateIndex = -1
   }
 
   initStage() {

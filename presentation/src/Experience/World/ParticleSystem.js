@@ -55,9 +55,9 @@ export default class ParticleSystem {
 
     this.scene.add( this.currentParticle.points )
 
-    setTimeout(() => {
-      this.changeModel(this.currentIndex + 1)
-    }, 1000)
+    // setTimeout(() => {
+    //   this.changeModel(this.currentIndex + 1)
+    // }, 3000)
   }
 
   bindEvents() {
