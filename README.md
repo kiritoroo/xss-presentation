@@ -8,7 +8,7 @@ This presentation is inspired by [UP](http://up.qq.com)
 ## Usage
 1. clone this repositry
 ```
-git https://github.com/kiritoroo/xss-presentation.git
+git clone https://github.com/kiritoroo/xss-presentation.git
 ```
 2. install package
 ```
